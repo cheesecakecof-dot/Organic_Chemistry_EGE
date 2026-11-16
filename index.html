@@ -1,0 +1,2249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Органическая химия ЕГЭ - Полный гид (Кофейно-пастельный стиль)</title>
+    <style>
+        /* =========================================
+           БАЗОВЫЕ НАСТРОЙКИ И ПАСТЕЛЬНАЯ ПАЛИТРА
+           ========================================= */
+        :root {
+            --bg-main: #FDFBF7; /* Сливочный фон */
+            --bg-card: #FFFFFF; /* Белый для карточек */
+            --coffee-dark: #4E342E; /* Темный кофе (текст) */
+            --coffee-medium: #6D4C41; /* Средний кофе */
+            --coffee-light: #D7CCC8; /* Светлый латте (границы) */
+            --pastel-pink: #F8E1E7; /* Пудровый розовый */
+            --pastel-green: #E8F5E9; /* Мятно-пастельный */
+            --pastel-blue: #E3F2FD; /* Пыльно-голубой */
+            --pastel-yellow: #FFF9C4; /* Пастельный желтый для выделений */
+            --font-main: 'Georgia', 'Times New Roman', serif;
+            --font-sans: 'Segoe UI', 'Nunito', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--coffee-dark);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* =========================================
+           ТИПОГРАФИКА И ЗАГОЛОВКИ
+           ========================================= */
+        h1 {
+            text-align: center;
+            color: var(--coffee-medium);
+            font-family: var(--font-main);
+            font-size: 2.5em;
+            border-bottom: 3px double var(--coffee-light);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: var(--coffee-dark);
+            background-color: var(--pastel-pink);
+            padding: 10px 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--coffee-medium);
+            font-family: var(--font-main);
+            margin-top: 40px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+        }
+
+        h3 {
+            color: var(--coffee-medium);
+            border-bottom: 2px dashed var(--coffee-light);
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+
+        /* =========================================
+           МАКЕТ: СЕТКА И БОКОВЫЕ ПАНЕЛИ
+           ========================================= */
+        .module-container {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr; /* Левая часть - теория, правая - реакции */
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .module-container {
+                grid-template-columns: 1fr; /* На телефонах в один столбец */
+            }
+        }
+
+        .sidebar {
+            background: linear-gradient(145deg, #FFFDF9, #F5EBE1);
+            border: 1px solid var(--coffee-light);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 4px 4px 15px rgba(109, 76, 65, 0.08);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar h4 {
+            color: var(--coffee-medium);
+            font-family: var(--font-main);
+            margin-top: 0;
+            font-size: 1.2em;
+            text-align: center;
+            border-bottom: 1px solid var(--coffee-light);
+            padding-bottom: 10px;
+        }
+
+        .sidebar p {
+            font-size: 0.95em;
+            color: #5D4037;
+        }
+
+        .sidebar .simple-explain {
+            background-color: var(--pastel-yellow);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #FBC02D;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #5D4037;
+        }
+
+        .main-content {
+            background-color: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid var(--coffee-light);
+        }
+
+        /* =========================================
+           ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ (СКРЫТЫЕ ОТВЕТЫ)
+           ========================================= */
+        details {
+            background-color: #FAFAFA;
+            border: 1px solid var(--coffee-light);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            background-color: var(--pastel-blue);
+            border-color: #90CAF9;
+            box-shadow: inset 0 0 10px rgba(144, 202, 249, 0.2);
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 15px 20px;
+            font-weight: 600;
+            color: var(--coffee-dark);
+            background-color: #F5F5F5;
+            list-style: none; /* Убираем стандартный треугольник */
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: "📖 ";
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        summary:hover {
+            background-color: var(--coffee-light);
+        }
+
+        details[open] summary {
+            background-color: var(--pastel-blue);
+            border-bottom: 1px solid #90CAF9;
+        }
+
+        details[open] summary::before {
+            content: "💡 ";
+        }
+
+        .answer-content {
+            padding: 20px;
+            border-top: 1px solid var(--coffee-light);
+            background-color: #FFFFFF;
+            font-family: var(--font-main);
+            font-size: 1.1em;
+            color: #3E2723;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .condition {
+            color: #D32F2F;
+            font-weight: bold;
+            font-family: var(--font-sans);
+            font-size: 0.9em;
+            background-color: #FFEBEE;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 5px;
+        }
+
+        .product {
+            color: #1976D2;
+            font-weight: bold;
+        }
+
+        /* =========================================
+           ХИМИЧЕСКИЕ ФОРМУЛЫ И ТАБЛИЦЫ
+           ========================================= */
+        .formula {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.15em;
+            background-color: #F9F9F9;
+            padding: 5px 10px;
+            border-radius: 5px;
+            letter-spacing: 1px;
+        }
+
+        sub {
+            font-size: 0.7em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--coffee-light);
+        }
+
+        th {
+            background-color: var(--pastel-pink);
+            color: var(--coffee-dark);
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #FDFBF7;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .badge-ege { background-color: #8D6E63; }
+        .badge-trap { background-color: #EF5350; }
+
+        /* =========================================
+           CSS-РИСОВАНИЕ (СТРУКТУРНЫЕ ФОРМУЛЫ)
+           ========================================= */
+        .structure-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #FAFAFA;
+            border-radius: 10px;
+            border: 1px dashed var(--coffee-medium);
+        }
+        
+        .struct-cyclo {
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--coffee-dark);
+            border-radius: 50%; /* Круг для циклопропана */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-weight: bold;
+            color: var(--coffee-medium);
+        }
+        .struct-cyclo-hex {
+            width: 90px;
+            height: 90px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" fill="none" stroke="%234E342E" stroke-width="4"/></svg>') no-repeat center center;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Плавное появление */
+        .module-container {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .footer-note {
+            text-align: center;
+            padding: 30px;
+            color: var(--coffee-medium);
+            font-style: italic;
+            border-top: 1px solid var(--coffee-light);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Полный курс органической химии для ЕГЭ<br><span style="font-size:0.5em; color:var(--coffee-medium);">Кофейно-пастельное издание</span></h1>
+
+    <!-- ==========================================
+         МОДУЛЬ 1: АЛКАНЫ (ALKANES)
+         ========================================== -->
+    <section class="module-container">
+        <!-- ЛЕВАЯ КОЛОНКА: ТЕОРИЯ -->
+        <aside class="sidebar">
+            <h4>Алканы (Предельные УВ)</h4>
+            <p><strong>Общая формула:</strong> <span class="formula">C<sub>n</sub>H<sub>2n+2</sub></span></p>
+            <p><strong>Тип гибридизации:</strong> \(sp^3\)</p>
+            <p><strong>Угол связи:</strong> 109°28'</p>
+            <p><strong>Строение:</strong> Все связи одинарные (предельные).</p>
+            
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Алканы — это как «ленивые» углеводороды. У них нет двойных или тройных связей, поэтому они не вступают в реакции присоединения. Им нужно «разорвать» прочную связь C-H или C-C. Поэтому их главная реакция — <strong>замещение</strong> (радикальное). Им нужен свет (hν) или сильный нагрев, чтобы начать реакцию.
+            </div>
+
+            <h4 style="margin-top: 20px;">Правило Зайцева (для отщепления)</h4>
+            <p>Если от галогеналкана можно отщепить водород от разных углеродов, то водород отщепляется от того углерода, у которого <strong>меньше</strong> атомов водорода (чтобы получить более разветвленный и стабильный алкен).</p>
+        </aside>
+
+        <!-- ПРАВАЯ КОЛОНКА: РЕАКЦИИ И ЗАДАНИЯ -->
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ 2024</span>
+            <span class="badge badge-trap">Частая ловушка</span>
+            
+            <h3>1. Реакции радикального замещения (Галогенирование)</h3>
+            <p>Протекает на свету (\(h\nu\)) или при нагревании. Идет по цепному механизму.</p>
+            
+            <details>
+                <summary>Уравнение: Хлорирование метана (1 стадия)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>4</sub> + Cl<sub>2</sub> <span class="condition">hν, t°</span> → CH<sub>3</sub>Cl + HCl</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Хлорметан (метилхлорид)</span><br>
+                        <strong>Условие:</strong> УФ-свет или сильное нагревание.<br>
+                        <em>Внимание на ЕГЭ!</em> В темноте реакция не идет! Нельзя писать просто Cl<sub>2</sub>.
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Уравнение: Бромирование пропана (Преимущественное)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>3</sub> + Br<sub>2</sub> <span class="condition">hν, t°</span> → CH<sub>3</sub>-CH(Br)-CH<sub>3</sub> + HBr</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">2-бромпропан</span> (основной продукт)<br>
+                        <strong>Почему так?</strong> Бром более селективен, чем хлор. Он замещает водород у <strong>вторичного</strong> углерода (в середине), так как образующийся вторичный радикал более стабилен, чем первичный (у края).<br>
+                        <em>Побочный продукт:</em> 1-бромпропан (в малых количествах).
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Схема реакции: Нитрование (Реакция Коновалова)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>3</sub> + HNO<sub>3</sub> (разб.) <span class="condition">t° = 140°C, p</span> → CH<sub>3</sub>-CH(NO<sub>2</sub>)-CH<sub>3</sub> + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">2-нитропропан</span><br>
+                        <strong>Условие:</strong> Разбавленная азотная кислота, нагрев (140°C), давление.
+                    </div>
+                </div>
+            </details>
+
+            <h3>2. Реакции дегидрирования (Отщепление водорода)</h3>
+            <p>Используется в промышленности для получения алкенов и алкинов.</p>
+
+            <details>
+                <summary>Уравнение: Дегидрирование этана и бутана</summary>
+                <div class="answer-content">
+                    <div><strong>Этан → Этен:</strong></div>
+                    <span class="formula">C<sub>2</sub>H<sub>6</sub> <span class="condition">Cr<sub>2</sub>O<sub>3</sub>, Ni, t°</span> → C<sub>2</sub>H<sub>4</sub> + H<sub>2</sub></span>
+                    <div style="margin-top: 15px;"><strong>Бутан → Бутадиен-1,3 (дивинил):</strong></div>
+                    <span class="formula">CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>2</sub>-CH<sub>3</sub> <span class="condition">Cr<sub>2</sub>O<sub>3</sub>, Al<sub>2</sub>O<sub>3</sub>, t°</span> → CH<sub>2</sub>=CH-CH=CH<sub>2</sub> + 2H<sub>2</sub></span>
+                    <div>
+                        <strong>Продукты:</strong> <span class="product">Этен</span> (или <span class="product">Бутадиен-1,3</span>)<br>
+                        <strong>Условие:</strong> Катализаторы дегидрирования (оксид хрома, никель), высокая температура.
+                    </div>
+                </div>
+            </details>
+
+            <h3>3. Реакции изомеризации</h3>
+            <p>Характерна для алканов с числом углеродов > 4. Нагревание в присутствии катализатора \(AlCl_3\).</p>
+
+            <details>
+                <summary>Уравнение: Изомеризация н-бутана</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>2</sub>-CH<sub>3</sub> <span class="condition">AlCl<sub>3</sub>, t°</span> → CH<sub>3</sub>-CH(CH<sub>3</sub>)-CH<sub>3</sub></span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">2-метилпропан (изобутан)</span><br>
+                        <strong>Условие:</strong> Катализатор хлорид алюминия, нагрев.
+                    </div>
+                </div>
+            </details>
+
+            <h3>4. Окисление (Горение и Каталитическое окисление)</h3>
+            <p>Алканы горят с выделением большого количества тепла. Каталитическое окисление используется для получения спиртов и кислот.</p>
+
+            <details>
+                <summary>Уравнение: Полное горение метана</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>4</sub> + 2O<sub>2</sub> <span class="condition">t°, искра</span> → CO<sub>2</sub>↑ + 2H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукты:</strong> <span class="product">Углекислый газ + Вода</span><br>
+                        <strong>Условие:</strong> Поджигание.
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary>Уравнение: Каталитическое окисление бутана (в промышленности)</summary>
+                <div class="answer-content">
+                    <span class="formula">2CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>2</sub>-CH<sub>3</sub> + 5O<sub>2</sub> <span class="condition">кат. (соли Co/Mn), t°, p</span> → 4CH<sub>3</sub>-COOH + 2H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Уксусная кислота</span><br>
+                        <strong>Условие:</strong> Катализаторы (кобальт/марганец), высокие температура и давление.
+                    </div>
+                </div>
+            </details>
+
+            <h3>5. Крекинг алканов (Промышленный метод)</h3>
+            <p>Термический или каталитический разрыв длинных молекул.</p>
+
+            <details>
+                <summary>Уравнение: Крекинг декана (термический)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>10</sub>H<sub>22</sub> <span class="condition">t° = 400-500°C</span> → C<sub>5</sub>H<sub>12</sub> + C<sub>5</sub>H<sub>10</sub></span>
+                    <div>
+                        <strong>Продукты:</strong> <span class="product">Алкан + Алкен</span> (в данном случае пентан и пентен).<br>
+                        <em>Внимание:</em> При крекинге всегда образуется предельный и непредельный углеводород!
+                    </div>
+                </div>
+            </details>
+
+            <h3>6. Получение алканов (Реакция Вюрца)</h3>
+            <p>Удлинение углеродной цепи с помощью металлического натрия.</p>
+
+            <details>
+                <summary>Уравнение: Синтез этана и бутана</summary>
+                <div class="answer-content">
+                    <div><strong>Этан:</strong></div>
+                    <span class="formula">2CH<sub>3</sub>Cl + 2Na <span class="condition">t°</span> → CH<sub>3</sub>-CH<sub>3</sub> + 2NaCl</span>
+                    <div style="margin-top: 15px;"><strong>Бутан (из хлорэтана):</strong></div>
+                    <span class="formula">2CH<sub>3</sub>CH<sub>2</sub>Cl + 2Na <span class="condition">t°</span> → CH<sub>3</sub>CH<sub>2</sub>-CH<sub>2</sub>CH<sub>3</sub> + 2NaCl</span>
+                    <div>
+                        <strong>Условие:</strong> Металлический натрий (Na), нагревание.<br>
+                        <strong>Продукт:</strong> Алкан с удвоенным числом атомов углерода.
+                    </div>
+                </div>
+            </details>
+
+            <!-- ТАБЛИЦА ИСКЛЮЧЕНИЙ / ШПАРГАЛКА -->
+            <h3>Сводная таблица по Алканам</h3>
+            <table>
+                <tr>
+                    <th>Тип реакции</th>
+                    <th>Реагент</th>
+                    <th>Условия</th>
+                    <th>Что получается</th>
+                </tr>
+                <tr>
+                    <td>Галогенирование (Замещение)</td>
+                    <td>Cl<sub>2</sub>, Br<sub>2</sub></td>
+                    <td>Свет (hν), t°</td>
+                    <td>Галогеналкан</td>
+                </tr>
+                <tr>
+                    <td>Нитрование</td>
+                    <td>HNO<sub>3</sub> (разб)</td>
+                    <td>t° = 140°C, p</td>
+                    <td>Нитроалкан</td>
+                </tr>
+                <tr>
+                    <td>Дегидрирование</td>
+                    <td>-</td>
+                    <td>Cr<sub>2</sub>O<sub>3</sub>, Ni, t°</td>
+                    <td>Алкен / Диен + H<sub>2</sub></td>
+                </tr>
+                <tr>
+                    <td>Синтез Вюрца</td>
+                    <td>Na</td>
+                    <td>t°</td>
+                    <td>Алкан (в 2 раза длиннее)</td>
+                </tr>
+            </table>
+
+            <div class="structure-container">
+                <div style="text-align: center;">
+                    <div class="struct-cyclo">CH<sub>2</sub></div>
+                    <span style="font-size: 0.8em; color: #888;">Циклопропан (С3Н6)</span>
+                </div>
+                <div style="text-align: center;">
+                    <div class="struct-cyclo-hex"></div>
+                    <span style="font-size: 0.8em; color: #888;">Циклогексан (С6Н12)</span>
+                </div>
+            </div>
+
+        </main>
+    </section>
+
+    <div class="footer-note">
+        <p>✨ Конец Модуля 1 (Алканы). Напишите <strong>"дальше"</strong>, чтобы я сгенерировал Модуль 2: Алкены (со всеми правилами Марковникова, жестким окислением и полимеризацией).</p>
+    </div>
+
+</body>
+</html>
+    <!-- ==========================================
+         МОДУЛЬ 2: ЦИКЛОАЛКАНЫ, АЛКЕНЫ, АЛКАДИЕНЫ, АЛКИНЫ, АРЕНЫ
+         ========================================== -->
+
+    <!-- ================= ЦИКЛОАЛКАНЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Циклоалканы</h4>
+            <p><strong>Общая формула:</strong> <span class="formula">C<sub>n</sub>H<sub>2n</sub></span></p>
+            <p><strong>Строение:</strong> Предельные углеводороды с замкнутой цепью.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Циклоалканы — это «алканы, свернувшиеся в кольцо». Маленькие кольца (циклопропан, циклобутан) напряжены и легко разрываются, вступая в реакции присоединения, как алкены. Большие кольца (циклогексан) ведут себя как обычные алканы — вступают в реакции замещения.
+            </div>
+            <h4 style="margin-top: 20px;">Пространственное строение</h4>
+            <p>Циклопропан — плоский треугольник. Циклобутан — не совсем плоский («складчатый»). Циклогексан — не плоский, существует в конформациях «кресло» и «ванна».</p>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <h3>1. Реакции присоединения (с раскрытием цикла)</h3>
+            <p>Характерны для малых циклов (C3, C4).</p>
+            <details>
+                <summary>Уравнение: Гидрирование циклопропана</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>3</sub>H<sub>6</sub> (циклопропан) + H<sub>2</sub> <span class="condition">Ni, t°</span> → CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Пропан</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Гидрогалогенирование (с раскрытием цикла)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>3</sub>H<sub>6</sub> + HBr → CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>2</sub>Br</span>
+                    <div><strong>Продукт:</strong> <span class="product">1-бромпропан</span> (правило Марковникова не работает, т.к. цикл симметричен).</div>
+                </div>
+            </details>
+            <h3>2. Реакции замещения (для средних и больших циклов)</h3>
+            <p>Характерны для циклогексана. Идут по радикальному механизму, как у алканов.</p>
+            <details>
+                <summary>Уравнение: Хлорирование циклогексана</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>12</sub> + Cl<sub>2</sub> <span class="condition">hν, t°</span> → C<sub>6</sub>H<sub>11</sub>Cl + HCl</span>
+                    <div><strong>Продукт:</strong> <span class="product">Хлорциклогексан</span></div>
+                </div>
+            </details>
+            <h3>3. Дегидрирование и ароматизация</h3>
+            <details>
+                <summary>Уравнение: Дегидрирование циклогексана</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>12</sub> <span class="condition">Pt, Pd или Ni, t°</span> → C<sub>6</sub>H<sub>6</sub> (бензол) + 3H<sub>2</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Бензол</span></div>
+                </div>
+            </details>
+            <h3>4. Получение (Реакция Вюрца внутримолекулярная)</h3>
+            <details>
+                <summary>Уравнение: Синтез циклопропана</summary>
+                <div class="answer-content">
+                    <span class="formula">Cl-CH<sub>2</sub>-CH<sub>2</sub>-CH<sub>2</sub>-Cl + Zn <span class="condition">t°</span> → C<sub>3</sub>H<sub>6</sub> (циклопропан) + ZnCl<sub>2</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Циклопропан</span></div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= АЛКЕНЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Алкены</h4>
+            <p><strong>Общая формула:</strong> <span class="formula">C<sub>n</sub>H<sub>2n</sub></span></p>
+            <p><strong>Тип гибридизации:</strong> \(sp^2\)</p>
+            <p><strong>Строение:</strong> Наличие одной двойной связи C=C.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Двойная связь — это как «магнит» для реагентов. Алкены очень активны и в первую очередь вступают в реакции <strong>присоединения</strong>. Главное правило — <strong>правило Марковникова</strong>: водород идет к тому углероду, где его больше. Но есть и исключения (эффект Хараша).
+            </div>
+            <h4 style="margin-top: 20px;">Исключения из правила Марковникова</h4>
+            <p>Присоединение HBr в присутствии пероксидов (H<sub>2</sub>O<sub>2</sub>) идет <strong>против</strong> правила Марковникова (радикальный механизм).</p>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <span class="badge badge-trap">Правило Марковникова</span>
+            <h3>1. Реакции электрофильного присоединения (AdE)</h3>
+            <details>
+                <summary>Уравнение: Гидрирование (восстановление)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH-CH<sub>3</sub> + H<sub>2</sub> <span class="condition">Ni, Pt, t°</span> → CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Пропан</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Галогенирование (качественная реакция)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH-CH<sub>3</sub> + Br<sub>2</sub> <span class="condition">CCl<sub>4</sub>, 0°C</span> → CH<sub>2</sub>(Br)-CH(Br)-CH<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">1,2-дибромпропан</span>. Обесцвечивание бромной воды.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Гидрогалогенирование (по правилу Марковникова)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH-CH<sub>3</sub> + HCl → CH<sub>3</sub>-CH(Cl)-CH<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">2-хлорпропан</span> (водород к более гидрированному атому).</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Гидратация (реакция Кучерова)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH-CH<sub>3</sub> + H<sub>2</sub>O <span class="condition">H<sub>2</sub>SO<sub>4</sub>, t°</span> → CH<sub>3</sub>-CH(OH)-CH<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Пропанол-2</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Гидробромирование (исключение — эффект Хараша)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH-CH<sub>3</sub> + HBr <span class="condition">H<sub>2</sub>O<sub>2</sub></span> → CH<sub>2</sub>(Br)-CH<sub>2</sub>-CH<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">1-бромпропан</span> (против правила Марковникова).</div>
+                </div>
+            </details>
+            <h3>2. Реакции окисления</h3>
+            <details>
+                <summary>Уравнение: Мягкое окисление (реакция Вагнера)</summary>
+                <div class="answer-content">
+                    <span class="formula">3CH<sub>2</sub>=CH-CH<sub>3</sub> + 2KMnO<sub>4</sub> + 4H<sub>2</sub>O <span class="condition">0°C</span> → 3CH<sub>2</sub>(OH)-CH(OH)-CH<sub>3</sub> + 2MnO<sub>2</sub>↓ + 2KOH</span>
+                    <div><strong>Продукт:</strong> <span class="product">Пропандиол-1,2</span> (гликоль). Обесцвечивание раствора KMnO<sub>4</sub>.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Жесткое окисление (в кислой среде)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH-CH<sub>3</sub> <span class="condition">KMnO<sub>4</sub>, H<sub>2</sub>SO<sub>4</sub>, t°</span> → CO<sub>2</sub>↑ + CH<sub>3</sub>-COOH</span>
+                    <div><strong>Продукты:</strong> <span class="product">Углекислый газ</span> (от CH<sub>2</sub>=) и <span class="product">Уксусная кислота</span> (от =CH-CH<sub>3</sub>).</div>
+                </div>
+            </details>
+            <h3>3. Полимеризация и аллильное замещение</h3>
+            <details>
+                <summary>Уравнение: Полимеризация</summary>
+                <div class="answer-content">
+                    <span class="formula">nCH<sub>2</sub>=CH-CH<sub>3</sub> <span class="condition">cat, p, t°</span> → (-CH<sub>2</sub>-CH(CH<sub>3</sub>)-)<sub>n</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Полипропилен</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Аллильное замещение (при высоких температурах)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH-CH<sub>3</sub> + Cl<sub>2</sub> <span class="condition">t° = 400-500°C</span> → CH<sub>2</sub>=CH-CH<sub>2</sub>Cl + HCl</span>
+                    <div><strong>Продукт:</strong> <span class="product">3-хлорпропен</span> (аллилхлорид). Замещение идет в аллильное положение.</div>
+                </div>
+            </details>
+            <h3>4. Получение</h3>
+            <details>
+                <summary>Уравнение: Дегидратация и дегидрогалогенирование</summary>
+                <div class="answer-content">
+                    <div><strong>Дегидратация:</strong> CH<sub>3</sub>-CH<sub>2</sub>-OH <span class="condition">H<sub>2</sub>SO<sub>4</sub>, t>140°C</span> → CH<sub>2</sub>=CH<sub>2</sub> + H<sub>2</sub>O</div>
+                    <div><strong>Дегидрогалогенирование:</strong> CH<sub>3</sub>-CH<sub>2</sub>Cl + KOH<sub>(спирт)</sub> <span class="condition">t°</span> → CH<sub>2</sub>=CH<sub>2</sub> + KCl + H<sub>2</sub>O</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= АЛКАДИЕНЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Алкадиены</h4>
+            <p><strong>Общая формула:</strong> <span class="formula">C<sub>n</sub>H<sub>2n-2</sub></span></p>
+            <p><strong>Строение:</strong> Две двойные связи.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Алкадиены — это «двухмагнитные» молекулы. Самое важное — это <strong>сопряженные</strong> диены (например, бутадиен-1,3), где двойные связи чередуются. Они могут присоединять реагенты как по одной связи (1,2-присоединение), так и по концам системы (1,4-присоединение).
+            </div>
+            <h4 style="margin-top: 20px;">Типы диенов</h4>
+            <p><strong>Кумулированные:</strong> C=C=C (аллен). <strong>Сопряженные:</strong> C=C-C=C (бутадиен-1,3). <strong>Изолированные:</strong> C=C-C-C=C (пентадиен-1,4).</p>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <span class="badge badge-trap">1,2- и 1,4-присоединение</span>
+            <h3>1. Реакции присоединения</h3>
+            <details>
+                <summary>Уравнение: Гидрирование бутадиена-1,3</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH-CH=CH<sub>2</sub> + 2H<sub>2</sub> <span class="condition">Ni, t°</span> → CH<sub>3</sub>-CH<sub>2</sub>-CH<sub>2</sub>-CH<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Бутан</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Бромирование бутадиена-1,3 (1 моль Br<sub>2</sub>)</summary>
+                <div class="answer-content">
+                    <div><strong>1,2-присоединение (кинетический контроль, низкая t°):</strong></div>
+                    <span class="formula">CH<sub>2</sub>=CH-CH=CH<sub>2</sub> + Br<sub>2</sub> <span class="condition">-80°C</span> → CH<sub>2</sub>(Br)-CH(Br)-CH=CH<sub>2</sub> (3,4-дибромбутен-1)</span>
+                    <div style="margin-top: 10px;"><strong>1,4-присоединение (термодинамический контроль, высокая t°):</strong></div>
+                    <span class="formula">CH<sub>2</sub>=CH-CH=CH<sub>2</sub> + Br<sub>2</sub> <span class="condition">40-60°C</span> → CH<sub>2</sub>(Br)-CH=CH-CH<sub>2</sub>(Br) (1,4-дибромбутен-2)</span>
+                </div>
+            </details>
+            <h3>2. Полимеризация (получение каучуков)</h3>
+            <details>
+                <summary>Уравнение: Полимеризация бутадиена-1,3</summary>
+                <div class="answer-content">
+                    <span class="formula">nCH<sub>2</sub>=CH-CH=CH<sub>2</sub> <span class="condition">Na или кат. Циглера-Натта</span> → (-CH<sub>2</sub>-CH=CH-CH<sub>2</sub>-)<sub>n</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Бутадиеновый каучук</span></div>
+                </div>
+            </details>
+            <h3>3. Окисление</h3>
+            <details>
+                <summary>Уравнение: Мягкое окисление (реакция Вагнера)</summary>
+                <div class="answer-content">
+                    <span class="formula">3CH<sub>2</sub>=CH-CH=CH<sub>2</sub> + 4KMnO<sub>4</sub> + 8H<sub>2</sub>O <span class="condition">0°C</span> → 3CH<sub>2</sub>(OH)-CH(OH)-CH(OH)-CH<sub>2</sub>(OH) + 4MnO<sub>2</sub>↓ + 4KOH</span>
+                    <div><strong>Продукт:</strong> <span class="product">Бутантетраол-1,2,3,4</span></div>
+                </div>
+            </details>
+            <h3>4. Специфические методы получения</h3>
+            <details>
+                <summary>Уравнение: Реакция Лебедева (из этанола)</summary>
+                <div class="answer-content">
+                    <span class="formula">2CH<sub>3</sub>CH<sub>2</sub>OH <span class="condition">ZnO, Al<sub>2</sub>O<sub>3</sub>, 400-450°C</span> → CH<sub>2</sub>=CH-CH=CH<sub>2</sub> + 2H<sub>2</sub>O + H<sub>2</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Бутадиен-1,3</span></div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= АЛКИНЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Алкины</h4>
+            <p><strong>Общая формула:</strong> <span class="formula">C<sub>n</sub>H<sub>2n-2</sub></span></p>
+            <p><strong>Тип гибридизации:</strong> \(sp\)</p>
+            <p><strong>Строение:</strong> Наличие одной тройной связи C≡C.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Тройная связь — это «супермагнит», но она прочнее двойной, поэтому реакции идут медленнее. Главная фишка алкинов — <strong>кислотные свойства</strong>. Если тройная связь находится на конце цепи (терминальный алкин), атом водорода там очень подвижный и может замещаться на металл (образуются ацетилениды).
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <span class="badge badge-trap">Кислотные свойства</span>
+            <h3>1. Реакции присоединения (AdE)</h3>
+            <details>
+                <summary>Уравнение: Гидрирование ацетилена (две стадии)</summary>
+                <div class="answer-content">
+                    <div>1 стадия: HC≡CH + H<sub>2</sub> <span class="condition">Ni, t°</span> → CH<sub>2</sub>=CH<sub>2</sub> (этен)</div>
+                    <div>2 стадия: CH<sub>2</sub>=CH<sub>2</sub> + H<sub>2</sub> <span class="condition">Ni, t°</span> → CH<sub>3</sub>-CH<sub>3</sub> (этан)</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Галогенирование (качественная реакция)</summary>
+                <div class="answer-content">
+                    <span class="formula">HC≡CH + 2Br<sub>2</sub> → CH(Br)<sub>2</sub>-CH(Br)<sub>2</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">1,1,2,2-тетрабромэтан</span>. Обесцвечивание бромной воды.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Гидратация (реакция Кучерова)</summary>
+                <div class="answer-content">
+                    <span class="formula">HC≡CH + H<sub>2</sub>O <span class="condition">HgSO<sub>4</sub>, H<sub>2</sub>SO<sub>4</sub>, t°</span> → CH<sub>3</sub>-CHO</span>
+                    <div><strong>Продукт:</strong> <span class="product">Ацетальдегид</span> (для ацетилена). Для гомологов — кетоны.</div>
+                </div>
+            </details>
+            <h3>2. Кислотные свойства и замещение (ацетилениды)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие с аммиачным раствором оксида серебра</summary>
+                <div class="answer-content">
+                    <span class="formula">HC≡CH + 2[Ag(NH<sub>3</sub>)<sub>2</sub>]OH → AgC≡CAg↓ + 4NH<sub>3</sub> + 2H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Ацетиленид серебра</span> (белый осадок). Качественная реакция на концевую тройную связь.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Взаимодействие с амидом натрия</summary>
+                <div class="answer-content">
+                    <span class="formula">HC≡CH + NaNH<sub>2</sub> → HC≡CNa + NH<sub>3</sub>↑</span>
+                    <div><strong>Продукт:</strong> <span class="product">Ацетиленид натрия</span></div>
+                </div>
+            </details>
+            <h3>3. Димеризация и тримеризация</h3>
+            <details>
+                <summary>Уравнение: Димеризация ацетилена</summary>
+                <div class="answer-content">
+                    <span class="formula">2HC≡CH <span class="condition">CuCl, NH<sub>4</sub>Cl, t°</span> → CH<sub>2</sub>=CH-C≡CH</span>
+                    <div><strong>Продукт:</strong> <span class="product">Винилацетилен</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Тримеризация ацетилена (реакция Зелинского)</summary>
+                <div class="answer-content">
+                    <span class="formula">3HC≡CH <span class="condition">C(акт), 400°C</span> → C<sub>6</sub>H<sub>6</sub> (бензол)</span>
+                    <div><strong>Продукт:</strong> <span class="product">Бензол</span></div>
+                </div>
+            </details>
+            <h3>4. Окисление</h3>
+            <details>
+                <summary>Уравнение: Жесткое окисление ацетилена</summary>
+                <div class="answer-content">
+                    <span class="formula">3HC≡CH + 10KMnO<sub>4</sub> + 2H<sub>2</sub>O → 6CO<sub>2</sub>↑ + 10MnO<sub>2</sub>↓ + 10KOH</span>
+                    <div><strong>Продукт:</strong> <span class="product">Углекислый газ</span></div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= АРЕНЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Арены (Ароматические УВ)</h4>
+            <p><strong>Общая формула:</strong> <span class="formula">C<sub>n</sub>H<sub>2n-6</sub></span> (для гомологов бензола)</p>
+            <p><strong>Строение:</strong> Наличие ароматического кольца (бензольного).</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Бензольное кольцо — это очень стабильная «крепость». Оно не хочет терять свою ароматичность, поэтому для аренов характерны реакции <strong>замещения</strong> (водорода в кольце), а не присоединения. Присоединение возможно только в жестких условиях (на свету или при сильном нагреве).
+            </div>
+            <h4 style="margin-top: 20px;">Ориентанты (заместители)</h4>
+            <p><strong>I рода (орто/пара-ориентанты):</strong> -OH, -NH<sub>2</sub>, -CH<sub>3</sub>, -Cl. Направляют новые группы в положения 2 и 4. <strong>II рода (мета-ориентанты):</strong> -NO<sub>2</sub>, -COOH, -SO<sub>3</sub>H. Направляют в положение 3.</p>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <span class="badge badge-trap">Ориентанты I и II рода</span>
+            <h3>1. Реакции электрофильного замещения (SE)</h3>
+            <details>
+                <summary>Уравнение: Галогенирование (хлорирование)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>6</sub> + Cl<sub>2</sub> <span class="condition">FeCl<sub>3</sub>, t°</span> → C<sub>6</sub>H<sub>5</sub>Cl + HCl</span>
+                    <div><strong>Продукт:</strong> <span class="product">Хлорбензол</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Нитрование</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>6</sub> + HNO<sub>3</sub> <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t°</span> → C<sub>6</sub>H<sub>5</sub>NO<sub>2</sub> + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Нитробензол</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Алкилирование (реакция Фриделя-Крафтса)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>6</sub> + CH<sub>3</sub>Cl <span class="condition">AlCl<sub>3</sub>, t°</span> → C<sub>6</sub>H<sub>5</sub>-CH<sub>3</sub> + HCl</span>
+                    <div><strong>Продукт:</strong> <span class="product">Толуол</span></div>
+                </div>
+            </details>
+            <h3>2. Реакции присоединения (в жестких условиях)</h3>
+            <details>
+                <summary>Уравнение: Гидрирование бензола</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>6</sub> + 3H<sub>2</sub> <span class="condition">Ni, Pt, t°, p</span> → C<sub>6</sub>H<sub>12</sub> (циклогексан)</span>
+                    <div><strong>Продукт:</strong> <span class="product">Циклогексан</span></div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Хлорирование на свету (радикальное)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>6</sub> + 3Cl<sub>2</sub> <span class="condition">hν</span> → C<sub>6</sub>H<sub>6</sub>Cl<sub>6</sub> (гексахлорциклогексан)</span>
+                    <div><strong>Продукт:</strong> <span class="product">Гексахлорциклогексан</span> (гексахлоран).</div>
+                </div>
+            </details>
+            <h3>3. Окисление гомологов бензола</h3>
+            <details>
+                <summary>Уравнение: Окисление толуола (жесткое)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>5</sub>-CH<sub>3</sub> + 3[O] <span class="condition">KMnO<sub>4</sub>, H<sub>2</sub>SO<sub>4</sub>, t°</span> → C<sub>6</sub>H<sub>5</sub>-COOH + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Бензойная кислота</span>. Бензольное кольцо не окисляется, окисляется только боковая цепь.</div>
+                </div>
+            </details>
+            <h3>4. Получение</h3>
+            <details>
+                <summary>Уравнение: Дегидрирование циклогексана и тримеризация ацетилена</summary>
+                <div class="answer-content">
+                    <div><strong>Из циклогексана:</strong> C<sub>6</sub>H<sub>12</sub> <span class="condition">Pt, t°</span> → C<sub>6</sub>H<sub>6</sub> + 3H<sub>2</sub></div>
+                    <div><strong>Из ацетилена:</strong> 3HC≡CH <span class="condition">C(акт), 400°C</span> → C<sub>6</sub>H<sub>6</sub></div>
+                </div>
+            </details>
+        </main>
+    </section>
+        <!-- ==========================================
+         МОДУЛЬ 3: КИСЛОРОДСОДЕРЖАЩИЕ СОЕДИНЕНИЯ
+         ========================================== -->
+
+    <!-- ================= ПРЕДЕЛЬНЫЕ ОДНОАТОМНЫЕ СПИРТЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Предельные одноатомные спирты</h4>
+            <p><strong>Общая формула:</strong> <span class="formula">C<sub>n</sub>H<sub>2n+1</sub>OH</span> (или R-OH)</p>
+            <p><strong>Функциональная группа:</strong> Гидроксильная (-OH)</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Спирт — это «вода с углеводородным хвостом». Кислород очень любит оттягивать электроны на себя, поэтому связь O-H становится полярной. Из-за этого водород может отщепляться (спирты реагируют с активными металлами), а также образуются водородные связи (поэтому спирты кипят выше, чем алканы). Главные реакции — отщепление воды (дегидратация) и окисление.
+            </div>
+            <h4 style="margin-top: 20px;">Важно знать (ЕГЭ)</h4>
+            <p>Спирты делятся на первичные (-CH<sub>2</sub>OH), вторичные (>CH-OH) и третичные (>C-OH). <strong>Первичные</strong> окисляются до альдегидов, <strong>вторичные</strong> — до кетонов. Третичные не окисляются.</p>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <span class="badge badge-trap">Межмолекулярная vs Внутримолекулярная</span>
+            <h3>1. Реакции замещения (Кислотные свойства)</h3>
+            <p>Спирты реагируют только с активными металлами (Na, K, Li), но не с Cu, Zn и т.д.</p>
+            <details>
+                <summary>Уравнение: Взаимодействие с металлическим натрием</summary>
+                <div class="answer-content">
+                    <span class="formula">2CH<sub>3</sub>CH<sub>2</sub>OH + 2Na → 2CH<sub>3</sub>CH<sub>2</sub>ONa + H<sub>2</sub>↑</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Этилат натрия</span> (алкоголят) + водород.<br>
+                        <em>Внимание:</em> В ЕГЭ часто просят написать именно эту реакцию для подтверждения кислотных свойств.
+                    </div>
+                </div>
+            </details>
+
+            <h3>2. Реакции дегидратации (Отщепление воды)</h3>
+            <p>Это самая важная тема для путаницы на экзамене.</p>
+            <details>
+                <summary>Уравнение: Внутримолекулярная дегидратация (t > 140°C)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CH<sub>2</sub>-OH <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t > 140°C</span> → CH<sub>2</sub>=CH<sub>2</sub>↑ + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Алкен</span> (в данном случае этен).<br>
+                        <strong>Почему:</strong> При сильном нагреве вода отщепляется от одной молекулы.
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Межмолекулярная дегидратация (t < 140°C)</summary>
+                <div class="answer-content">
+                    <span class="formula">2CH<sub>3</sub>-CH<sub>2</sub>-OH <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t < 140°C</span> → CH<sub>3</sub>-CH<sub>2</sub>-O-CH<sub>2</sub>-CH<sub>3</sub> + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Диэтиловый эфир</span> (простой эфир).<br>
+                        <strong>Почему:</strong> При умеренном нагреве две молекулы спирта соединяются, отщепляя одну воду.
+                    </div>
+                </div>
+            </details>
+
+            <h3>3. Окисление спиртов</h3>
+            <p>Используется оксид меди(II) при нагревании.</p>
+            <details>
+                <summary>Уравнение: Окисление этанола (первичный спирт)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>CH<sub>2</sub>OH + CuO <span class="condition">t°</span> → CH<sub>3</sub>-CHO + Cu↓ + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Ацетальдегид</span> (уксусный альдегид).<br>
+                        <em>Цвет:</em> черный порошок CuO восстанавливается до красной меди Cu.
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Окисление пропанола-2 (вторичный спирт)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CH(OH)-CH<sub>3</sub> + CuO <span class="condition">t°</span> → CH<sub>3</sub>-CO-CH<sub>3</sub> + Cu↓ + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Ацетон</span> (кетон).<br>
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= МНОГОАТОМНЫЕ СПИРТЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Многоатомные спирты</h4>
+            <p><strong>Строение:</strong> Содержат две и более групп -OH.</p>
+            <p>Этиленгликоль (CH<sub>2</sub>OH-CH<sub>2</sub>OH), Глицерин (CH<sub>2</sub>OH-CHOH-CH<sub>2</sub>OH).</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Они похожи на обычные спирты, но «жаднее» до металлов. Благодаря нескольким группам -OH, они реагируют не только с натрием, но и с нерастворимым гидроксидом меди(II), образуя ярко-синий раствор. Это качественная реакция!
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Качественная реакция</span>
+            <h3>1. Специфические реакции</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие глицерина с гидроксидом меди(II)</summary>
+                <div class="answer-content">
+                    <span class="formula">2CH<sub>2</sub>OH-CHOH-CH<sub>2</sub>OH + Cu(OH)<sub>2</sub> → (C<sub>3</sub>H<sub>5</sub>O<sub>3</sub>)<sub>2</sub>Cu + 2H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Глицерат меди(II)</span> (ярко-синий раствор).<br>
+                        <em>Признак:</em> Осадок Cu(OH)<sub>2</sub> растворяется, образуя синий раствор хелатного комплекса.
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Взаимодействие глицерина с азотной кислотой</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>OH-CHOH-CH<sub>2</sub>OH + 3HNO<sub>3</sub> <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t°</span> → CH<sub>2</sub>ONO<sub>2</sub>-CHONO<sub>2</sub>-CH<sub>2</sub>ONO<sub>2</sub> + 3H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Нитроглицерин</span> (сложный эфир).<br>
+                        <em>Осторожно:</em> Это взрывчатое вещество. В ЕГЭ встречается как реакция этерификации.
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= ФЕНОЛЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Фенолы</h4>
+            <p><strong>Строение:</strong> Радикал фенил (C<sub>6</sub>H<sub>5</sub>-) соединен с группой -OH.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Фенол — это «мутант» между спиртом и бензолом. Группа -OH и бензольное кольцо влияют друг на друга. Кислотные свойства у фенола сильнее, чем у спиртов (он реагирует даже со щелочами!), а бензольное кольцо становится активнее в реакциях замещения (легко вступает в реакции с бромной водой).
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Особые свойства</span>
+            <span class="badge badge-trap">Не путать со спиртами!</span>
+            <h3>1. Кислотные свойства</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие со щелочью (NaOH)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>5</sub>OH + NaOH → C<sub>6</sub>H<sub>5</sub>ONa + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Фенолят натрия</span>.<br>
+                        <em>В отличие от спиртов, фенол реагирует со щелочами!</em>
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Взаимодействие с металлическим натрием</summary>
+                <div class="answer-content">
+                    <span class="formula">2C<sub>6</sub>H<sub>5</sub>OH + 2Na → 2C<sub>6</sub>H<sub>5</sub>ONa + H<sub>2</sub>↑</span>
+                </div>
+            </details>
+
+            <h3>2. Реакции замещения в бензольном кольце (Качественные)</h3>
+            <details>
+                <summary>Уравнение: Бромирование фенола</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>5</sub>OH + 3Br<sub>2</sub>(водн.) → C<sub>6</sub>H<sub>2</sub>Br<sub>3</sub>OH↓ + 3HBr</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">2,4,6-трибромфенол</span>.<br>
+                        <em>Признак:</em> Выпадение белого осадка. Качественная реакция на фенол.
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Нитрование фенола</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>5</sub>OH + 3HNO<sub>3</sub>(разб.) <span class="condition">t°</span> → C<sub>6</sub>H<sub>2</sub>(NO<sub>2</sub>)<sub>3</sub>OH↓ + 3H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">2,4,6-тринитрофенол</span> (пикриновая кислота). Желтый осадок.
+                    </div>
+                </div>
+            </details>
+
+            <h3>3. Качественная реакция на фенол</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие с хлоридом железа(III)</summary>
+                <div class="answer-content">
+                    <span class="formula">6C<sub>6</sub>H<sub>5</sub>OH + FeCl<sub>3</sub> → H<sub>3</sub>[Fe(C<sub>6</sub>H<sub>5</sub>O)<sub>6</sub>] + 3HCl</span>
+                    <div>
+                        <strong>Признак:</strong> Появление <span class="product">фиолетового окрашивания</span>. Это самая частая качественная реакция на фенол в ЕГЭ.
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= АЛЬДЕГИДЫ И КЕТОНЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Альдегиды и Кетоны</h4>
+            <p><strong>Функциональная группа:</strong> Карбонильная (C=O).</p>
+            <p>Альдегиды: R-CHO. Кетоны: R-CO-R'.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Карбонильная группа C=O очень полярна, поэтому по ней легко идут реакции присоединения (например, водорода). Главная фишка альдегидов — они легко окисляются (в отличие от кетонов). Альдегиды — это «восстановители». Именно поэтому они дают реакцию «серебряного зеркала» и реагируют с гидроксидом меди(II).
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Качественные реакции</span>
+            <span class="badge badge-trap">Альдегид vs Кетон</span>
+            <h3>1. Реакции окисления (Только для альдегидов!)</h3>
+            <details>
+                <summary>Уравнение: Реакция "Серебряного зеркала"</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>CHO + Ag<sub>2</sub>O <span class="condition">NH<sub>3</sub>(водн.), t°</span> → CH<sub>3</sub>COOH + 2Ag↓</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Уксусная кислота</span> + <span class="product">Серебро</span>.<br>
+                        <em>Признак:</em> Образование блестящего налета серебра на стенках пробирки. (В ЕГЭ часто пишут реагент как [Ag(NH<sub>3</sub>)<sub>2</sub>]OH).
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Окисление гидроксидом меди(II)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>CHO + 2Cu(OH)<sub>2</sub> <span class="condition">t°</span> → CH<sub>3</sub>COOH + Cu<sub>2</sub>O↓ + 2H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Уксусная кислота</span> + <span class="product">Оксид меди(I)</span>.<br>
+                        <em>Признак:</em> Выпадение кирпично-красного осадка Cu<sub>2</sub>O.
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Реакция с аммиачным раствором оксида серебра (для формальдегида)</summary>
+                <div class="answer-content">
+                    <span class="formula">HCHO + 2Ag<sub>2</sub>O <span class="condition">NH<sub>3</sub>, t°</span> → CO<sub>2</sub>↑ + H<sub>2</sub>O + 4Ag↓</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Углекислый газ</span>. Формальдегид окисляется до предела.
+                    </div>
+                </div>
+            </details>
+
+            <h3>2. Реакции восстановления (Присоединение водорода)</h3>
+            <details>
+                <summary>Уравнение: Восстановление альдегида и кетона</summary>
+                <div class="answer-content">
+                    <div><strong>Альдегид → Первичный спирт:</strong></div>
+                    <span class="formula">CH<sub>3</sub>CHO + H<sub>2</sub> <span class="condition">Ni, t°, p</span> → CH<sub>3</sub>CH<sub>2</sub>OH</span>
+                    <div style="margin-top: 10px;"><strong>Кетон → Вторичный спирт:</strong></div>
+                    <span class="formula">CH<sub>3</sub>-CO-CH<sub>3</sub> + H<sub>2</sub> <span class="condition">Ni, t°, p</span> → CH<sub>3</sub>-CH(OH)-CH<sub>3</sub></span>
+                </div>
+            </details>
+
+            <h3>3. Специфические реакции</h3>
+            <details>
+                <summary>Уравнение: Иодоформная реакция (на метилкетоны и ацетальдегид)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CO-CH<sub>3</sub> + 3I<sub>2</sub> + 4NaOH → CHI<sub>3</sub>↓ + CH<sub>3</sub>COONa + 3NaI + 3H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Иодоформ</span> (желтый осадок с характерным запахом) + ацетат натрия.<br>
+                        <em>Применение:</em> Качественная реакция на наличие группы CH<sub>3</sub>-CO-.
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= КАРБОНОВЫЕ КИСЛОТЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Карбоновые кислоты</h4>
+            <p><strong>Функциональная группа:</strong> Карбоксильная (-COOH).</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Кислоты — это «альдегиды, которые уже окислились». Из-за группы -COOH они проявляют ярко выраженные кислотные свойства (реагируют с металлами, оксидами, основаниями и солями). Но они могут и восстанавливаться, хотя это сложнее, чем у альдегидов.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кислотные свойства</span>
+            <h3>1. Общие свойства кислот</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие с металлами, оксидами, основаниями</summary>
+                <div class="answer-content">
+                    <div><strong>С металлом (Zn):</strong> 2CH<sub>3</sub>COOH + Zn → (CH<sub>3</sub>COO)<sub>2</sub>Zn + H<sub>2</sub>↑</div>
+                    <div><strong>С основным оксидом (CuO):</strong> 2CH<sub>3</sub>COOH + CuO → (CH<sub>3</sub>COO)<sub>2</sub>Cu + H<sub>2</sub>O</div>
+                    <div><strong>С основанием (NaOH):</strong> CH<sub>3</sub>COOH + NaOH → CH<sub>3</sub>COONa + H<sub>2</sub>O (реакция нейтрализации)</div>
+                    <div><strong>С солью (Na<sub>2</sub>CO<sub>3</sub>):</strong> 2CH<sub>3</sub>COOH + Na<sub>2</sub>CO<sub>3</sub> → 2CH<sub>3</sub>COONa + CO<sub>2</sub>↑ + H<sub>2</sub>O</div>
+                    <div><em>Признак:</em> Выделение газа (CO<sub>2</sub>) при реакции с карбонатами — качественная реакция на кислоту.</div>
+                </div>
+            </details>
+
+            <h3>2. Реакция этерификации (Образование сложных эфиров)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие уксусной кислоты и этанола</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>COOH + C<sub>2</sub>H<sub>5</sub>OH <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t°</span> ⇄ CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub> + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Этилацетат</span> (этиловый эфир уксусной кислоты).<br>
+                        <em>Особенность:</em> Реакция обратима. Вода отщепляется от кислоты (OH) и спирта (H).
+                    </div>
+                </div>
+            </details>
+
+            <h3>3. Специфические реакции</h3>
+            <details>
+                <summary>Уравнение: Декарбоксилирование (сплавление со щелочью)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>COONa + NaOH <span class="condition">t° (сплавление)</span> → CH<sub>4</sub>↑ + Na<sub>2</sub>CO<sub>3</sub></span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Метан</span> (алкан) + карбонат натрия.<br>
+                        <em>Применение:</em> Способ получения алканов с меньшим числом атомов углерода.
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= СЛОЖНЫЕ ЭФИРЫ И ЖИРЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Сложные эфиры и Жиры</h4>
+            <p><strong>Строение:</strong> R-COO-R' (сложные эфиры). Жиры — это сложные эфиры глицерина и высших карбоновых кислот.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Сложные эфиры — это «продукты любви» кислоты и спирта. Они часто пахнут фруктами. Главная реакция для них — гидролиз (разложение водой). Если гидролиз идет в щелочной среде, он называется «омылением» (потому что получается мыло).
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Гидролиз</span>
+            <h3>1. Гидролиз сложных эфиров</h3>
+            <details>
+                <summary>Уравнение: Кислотный гидролиз (обратимый)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub> + H<sub>2</sub>O <span class="condition">H<sub>2</sub>SO<sub>4</sub>, t°</span> ⇄ CH<sub>3</sub>COOH + C<sub>2</sub>H<sub>5</sub>OH</span>
+                    <div>Продукты: <span class="product">Кислота + Спирт</span>.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Щелочной гидролиз (Омыление, необратимый)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub> + NaOH <span class="condition">t°</span> → CH<sub>3</sub>COONa + C<sub>2</sub>H<sub>5</sub>OH</span>
+                    <div>Продукты: <span class="product">Соль кислоты (мыло) + Спирт</span>.</div>
+                </div>
+            </details>
+
+            <h3>2. Гидролиз жиров (Омыление)</h3>
+            <details>
+                <summary>Уравнение: Щелочной гидролиз жира (получение мыла)</summary>
+                <div class="answer-content">
+                    <span class="formula">(C<sub>17</sub>H<sub>35</sub>COO)<sub>3</sub>C<sub>3</sub>H<sub>5</sub> + 3NaOH <span class="condition">t°</span> → 3C<sub>17</sub>H<sub>35</sub>COONa + C<sub>3</sub>H<sub>5</sub>(OH)<sub>3</sub></span>
+                    <div>
+                        <strong>Продукты:</strong> <span class="product">Стеарат натрия</span> (мыло) + <span class="product">Глицерин</span>.<br>
+                        <em>Внимание:</em> В ЕГЭ часто просят написать гидролиз конкретного жира (например, тристеарина).
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= УГЛЕВОДЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Углеводы</h4>
+            <p><strong>Классификация:</strong> Моносахариды (глюкоза, фруктоза), Дисахариды (сахароза), Полисахариды (крахмал, целлюлоза).</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Это «топливо» для живых организмов. Ключевые свойства: глюкоза — альдегидоспирт (дает реакции альдегидов и многоатомных спиртов). Сахароза, крахмал и целлюлоза — не дают реакцию «серебряного зеркала», но могут гидролизоваться (разлагаться водой) до глюкозы.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Специфика углеводов</span>
+            <h3>1. Свойства глюкозы (Моносахарид)</h3>
+            <details>
+                <summary>Уравнение: Реакция "Серебряного зеркала" (как у альдегида)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + Ag<sub>2</sub>O <span class="condition">NH<sub>3</sub>, t°</span> → C<sub>6</sub>H<sub>12</sub>O<sub>7</sub> (глюконовая кислота) + 2Ag↓</span>
+                    <div>Продукт: <span class="product">Глюконовая кислота</span> + серебро.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Реакция с гидроксидом меди(II) (как у многоатомного спирта)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + Cu(OH)<sub>2</sub> → C<sub>6</sub>H<sub>11</sub>O<sub>6</sub>Cu + 2H<sub>2</sub>O</span>
+                    <div>Признак: <span class="product">Ярко-синий раствор</span> (без нагрева).</div>
+                </div>
+            </details>
+
+            <h3>2. Гидролиз дисахаридов и полисахаридов</h3>
+            <details>
+                <summary>Уравнение: Гидролиз сахарозы</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>12</sub>H<sub>22</sub>O<sub>11</sub> (сахароза) + H<sub>2</sub>O <span class="condition">H<sub>2</sub>SO<sub>4</sub>, t°</span> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (глюкоза) + C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (фруктоза)</span>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Гидролиз крахмала и целлюлозы</summary>
+                <div class="answer-content">
+                    <span class="formula">(C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub> + nH<sub>2</sub>O <span class="condition">H<sub>2</sub>SO<sub>4</sub>, t°</span> → nC<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (глюкоза)</span>
+                    <div>Конечный продукт гидролиза обоих полисахаридов — <span class="product">глюкоза</span>.</div>
+                </div>
+            </details>
+
+            <h3>3. Качественная реакция на крахмал</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие с йодом</summary>
+                <div class="answer-content">
+                    <span class="formula">(C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub> + I<sub>2</sub> → <span class="product">Синее окрашивание</span></span>
+                    <div><em>Внимание:</em> Химическое уравнение здесь писать не обязательно, достаточно указать признак, но лучше знать, что это комплексное соединение.</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <div class="footer-note">
+        <p>✨ <strong>Конец Модуля 3 (Кислородсодержащие).</strong> <br>
+        Основной блок органики завершен! Далее, как мы и договаривались, мы перейдем к неорганике по банку ФИПИ 2027. Пиши <strong>"дальше"</strong>, чтобы начать блок Неорганической химии с теорией и реальными задачами!</p>
+    </div>    <!-- ==========================================
+         МОДУЛЬ 3.1: РАСШИРЕННЫЙ БЛОК КИСЛОРОДСОДЕРЖАЩИХ
+         ========================================== -->
+
+    <!-- ================= СПИРТЫ (ПРЕДЕЛЬНЫЕ ОДНОАТОМНЫЕ) ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Предельные одноатомные спирты</h4>
+            <p><strong>Общая формула:</strong> <span class="formula">C<sub>n</sub>H<sub>2n+1</sub>OH</span></p>
+            <p><strong>Функциональная группа:</strong> -OH (гидроксильная)</p>
+            
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Спирты — это «вода с углеводородным хвостом». Кислород очень любит оттягивать электроны на себя, поэтому связь O-H становится полярной, и водород может отщепляться (поэтому спирты реагируют с активными металлами, как кислоты). А еще из-за этой полярности между молекулами спирта образуются <strong>водородные связи</strong>, поэтому у них такие высокие температуры кипения.
+            </div>
+
+            <h4 style="margin-top: 20px;">Классификация (важно для ЕГЭ)</h4>
+            <p><strong>По числу групп -OH:</strong> одноатомные (этанол), многоатомные (глицерин).</p>
+            <p><strong>По типу радикала:</strong> предельные, непредельные (аллиловый спирт), ароматические (бензиловый спирт).</p>
+            <p><strong>По числу соседних углеродов:</strong> первичные (-CH<sub>2</sub>OH), вторичные (>CH-OH), третичные (>C-OH).</p>
+
+            <div class="simple-explain" style="margin-top: 15px; background-color: #FFEBEE; border-left-color: #EF5350;">
+                <strong>Ловушка ЕГЭ:</strong> Запомни! Окисление первичных спиртов дает <strong>альдегиды</strong>, вторичных — <strong>кетоны</strong>. Третичные спирты в обычных условиях <strong>не окисляются</strong>.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <span class="badge badge-trap">Окисление спиртов</span>
+            <h3>1. Реакции с активными металлами (Кислотные свойства)</h3>
+            <p>Спирты реагируют только с щелочными и щелочноземельными металлами (Na, K, Li, Ca).</p>
+            <details>
+                <summary>Уравнение: Взаимодействие с натрием</summary>
+                <div class="answer-content">
+                    <span class="formula">2CH<sub>3</sub>CH<sub>2</sub>OH + 2Na → 2CH<sub>3</sub>CH<sub>2</sub>ONa + H<sub>2</sub>↑</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Этилат натрия</span> (алкоголят).<br>
+                        <em>Признак:</em> Растворение металла, выделение газа.
+                    </div>
+                </div>
+            </details>
+
+            <h3>2. Реакции дегидратации (Отщепление воды)</h3>
+            <details>
+                <summary>Уравнение: Внутримолекулярная дегидратация (t > 140°C)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CH<sub>2</sub>-OH <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t > 140°C</span> → CH<sub>2</sub>=CH<sub>2</sub>↑ + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Алкен</span> (этен).</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Межмолекулярная дегидратация (t < 140°C)</summary>
+                <div class="answer-content">
+                    <span class="formula">2CH<sub>3</sub>-CH<sub>2</sub>-OH <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t < 140°C</span> → CH<sub>3</sub>-CH<sub>2</sub>-O-CH<sub>2</sub>-CH<sub>3</sub> + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Диэтиловый эфир</span> (простой эфир).</div>
+                </div>
+            </details>
+
+            <h3>3. Реакции окисления (Разбираем все случаи)</h3>
+            <details>
+                <summary>Уравнение: Окисление первичного спирта (этанол) оксидом меди(II)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>CH<sub>2</sub>OH + CuO <span class="condition">t°</span> → CH<sub>3</sub>-CHO + Cu↓ + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Ацетальдегид</span> (альдегид). Черный CuO → красная Cu.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Окисление вторичного спирта (пропанол-2) оксидом меди(II)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CH(OH)-CH<sub>3</sub> + CuO <span class="condition">t°</span> → CH<sub>3</sub>-CO-CH<sub>3</sub> + Cu↓ + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Ацетон</span> (кетон).</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Жесткое окисление этанола (до кислоты)</summary>
+                <div class="answer-content">
+                    <span class="formula">5C<sub>2</sub>H<sub>5</sub>OH + 4KMnO<sub>4</sub> + 12HCl → 5CH<sub>3</sub>COOH + 4MnCl<sub>2</sub> + 11H<sub>2</sub>O + 4KCl</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Уксусная кислота</span>.<br>
+                        <em>Условие:</em> Сильный окислитель (KMnO<sub>4</sub> или K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>) в кислой среде.
+                    </div>
+                </div>
+            </details>
+
+            <h3>4. Реакции с галогеноводородами</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие с HBr</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>CH<sub>2</sub>OH + HBr <span class="condition">t°</span> → CH<sub>3</sub>CH<sub>2</sub>Br + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Бромэтан</span> (галогеналкан).</div>
+                </div>
+            </details>
+
+            <h3>5. Получение спиртов</h3>
+            <details>
+                <summary>Уравнение: Гидратация этилена (промышленный способ)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>=CH<sub>2</sub> + H<sub>2</sub>O <span class="condition">H<sub>3</sub>PO<sub>4</sub>, t°, p</span> → CH<sub>3</sub>CH<sub>2</sub>OH</span>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Брожение глюкозы (получение этанола)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> <span class="condition">ферменты (дрожжи)</span> → 2C<sub>2</sub>H<sub>5</sub>OH + 2CO<sub>2</sub>↑</span>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= МНОГОАТОМНЫЕ СПИРТЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Многоатомные спирты</h4>
+            <p><strong>Представители:</strong> Этиленгликоль (CH<sub>2</sub>OH-CH<sub>2</sub>OH), Глицерин (CH<sub>2</sub>OH-CHOH-CH<sub>2</sub>OH).</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Они похожи на обычные спирты, но «жаднее» до металлов и образуют яркие комплексы. Благодаря нескольким группам -OH, они реагируют с нерастворимым гидроксидом меди(II), образуя ярко-синий раствор. Это их главная качественная реакция.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Качественная реакция</span>
+            <h3>1. Качественная реакция на многоатомные спирты</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие глицерина с гидроксидом меди(II)</summary>
+                <div class="answer-content">
+                    <span class="formula">2CH<sub>2</sub>OH-CHOH-CH<sub>2</sub>OH + Cu(OH)<sub>2</sub> → (C<sub>3</sub>H<sub>5</sub>O<sub>3</sub>)<sub>2</sub>Cu + 2H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Глицерат меди(II)</span>.<br>
+                        <em>Признак:</em> Осадок Cu(OH)<sub>2</sub> растворяется, образуя <strong>ярко-синий раствор</strong>.
+                    </div>
+                </div>
+            </details>
+            <h3>2. Реакция этерификации (с азотной кислотой)</h3>
+            <details>
+                <summary>Уравнение: Получение нитроглицерина</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>2</sub>OH-CHOH-CH<sub>2</sub>OH + 3HNO<sub>3</sub> <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t°</span> → CH<sub>2</sub>ONO<sub>2</sub>-CHONO<sub>2</sub>-CH<sub>2</sub>ONO<sub>2</sub> + 3H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Нитроглицерин</span> (сложный эфир).</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= ФЕНОЛЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Фенолы</h4>
+            <p><strong>Строение:</strong> Радикал фенил (C<sub>6</sub>H<sub>5</sub>-) соединен с группой -OH.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Фенол — это «мутант» между спиртом и бензолом. Группа -OH и бензольное кольцо влияют друг на друга. Кислотные свойства у фенола сильнее, чем у спиртов (он реагирует даже со щелочами!), а бензольное кольцо становится активнее в реакциях замещения (легко реагирует с бромной водой).
+            </div>
+            <div class="simple-explain" style="margin-top: 15px; background-color: #E8F5E9; border-left-color: #66BB6A;">
+                <strong>Взаимное влияние:</strong> Группа -OH «тянет» электроны от кольца, делая его более активным. Кольцо, в свою очередь, делает связь O-H более полярной, усиливая кислотные свойства.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Особые свойства</span>
+            <span class="badge badge-trap">Не путать со спиртами!</span>
+            <h3>1. Кислотные свойства</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие со щелочью (NaOH)</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>5</sub>OH + NaOH → C<sub>6</sub>H<sub>5</sub>ONa + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Фенолят натрия</span>.<br>
+                        <em>В отличие от спиртов, фенол реагирует со щелочами!</em>
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Взаимодействие с металлическим натрием</summary>
+                <div class="answer-content">
+                    <span class="formula">2C<sub>6</sub>H<sub>5</sub>OH + 2Na → 2C<sub>6</sub>H<sub>5</sub>ONa + H<sub>2</sub>↑</span>
+                </div>
+            </details>
+
+            <h3>2. Реакции замещения в бензольном кольце (Качественные)</h3>
+            <details>
+                <summary>Уравнение: Бромирование фенола</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>5</sub>OH + 3Br<sub>2</sub>(водн.) → C<sub>6</sub>H<sub>2</sub>Br<sub>3</sub>OH↓ + 3HBr</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">2,4,6-трибромфенол</span>.<br>
+                        <em>Признак:</em> Выпадение белого осадка.
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Нитрование фенола</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>5</sub>OH + 3HNO<sub>3</sub>(разб.) <span class="condition">t°</span> → C<sub>6</sub>H<sub>2</sub>(NO<sub>2</sub>)<sub>3</sub>OH↓ + 3H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">2,4,6-тринитрофенол</span> (пикриновая кислота). Желтый осадок.</div>
+                </div>
+            </details>
+
+            <h3>3. Качественная реакция на фенол</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие с хлоридом железа(III)</summary>
+                <div class="answer-content">
+                    <span class="formula">6C<sub>6</sub>H<sub>5</sub>OH + FeCl<sub>3</sub> → H<sub>3</sub>[Fe(C<sub>6</sub>H<sub>5</sub>O)<sub>6</sub>] + 3HCl</span>
+                    <div>
+                        <strong>Признак:</strong> Появление <span class="product">фиолетового окрашивания</span>.
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= АЛЬДЕГИДЫ И КЕТОНЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Альдегиды и Кетоны</h4>
+            <p><strong>Функциональная группа:</strong> Карбонильная (C=O).</p>
+            <p>Альдегиды: R-CHO. Кетоны: R-CO-R'.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Карбонильная группа C=O очень полярна, поэтому по ней легко идут реакции присоединения (например, водорода). Главная фишка альдегидов — они легко окисляются (в отличие от кетонов). Альдегиды — это «восстановители». Именно поэтому они дают реакцию «серебряного зеркала» и реагируют с гидроксидом меди(II).
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Качественные реакции</span>
+            <span class="badge badge-trap">Альдегид vs Кетон</span>
+            <h3>1. Реакции окисления (Только для альдегидов!)</h3>
+            <details>
+                <summary>Уравнение: Реакция "Серебряного зеркала"</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>CHO + Ag<sub>2</sub>O <span class="condition">NH<sub>3</sub>(водн.), t°</span> → CH<sub>3</sub>COOH + 2Ag↓</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Уксусная кислота</span> + <span class="product">Серебро</span>.<br>
+                        <em>Признак:</em> Образование блестящего налета серебра на стенках пробирки.
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Окисление гидроксидом меди(II)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>CHO + 2Cu(OH)<sub>2</sub> <span class="condition">t°</span> → CH<sub>3</sub>COOH + Cu<sub>2</sub>O↓ + 2H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Уксусная кислота</span> + <span class="product">Оксид меди(I)</span>.<br>
+                        <em>Признак:</em> Выпадение кирпично-красного осадка Cu<sub>2</sub>O.
+                    </div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Окисление формальдегида (до CO2)</summary>
+                <div class="answer-content">
+                    <span class="formula">HCHO + 2Ag<sub>2</sub>O <span class="condition">NH<sub>3</sub>, t°</span> → CO<sub>2</sub>↑ + H<sub>2</sub>O + 4Ag↓</span>
+                </div>
+            </details>
+
+            <h3>2. Реакции восстановления (Присоединение водорода)</h3>
+            <details>
+                <summary>Уравнение: Восстановление альдегида и кетона</summary>
+                <div class="answer-content">
+                    <div><strong>Альдегид → Первичный спирт:</strong> CH<sub>3</sub>CHO + H<sub>2</sub> <span class="condition">Ni, t°, p</span> → CH<sub>3</sub>CH<sub>2</sub>OH</div>
+                    <div style="margin-top: 10px;"><strong>Кетон → Вторичный спирт:</strong> CH<sub>3</sub>-CO-CH<sub>3</sub> + H<sub>2</sub> <span class="condition">Ni, t°, p</span> → CH<sub>3</sub>-CH(OH)-CH<sub>3</sub></div>
+                </div>
+            </details>
+
+            <h3>3. Специфические реакции</h3>
+            <details>
+                <summary>Уравнение: Иодоформная реакция (на метилкетоны и ацетальдегид)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>-CO-CH<sub>3</sub> + 3I<sub>2</sub> + 4NaOH → CHI<sub>3</sub>↓ + CH<sub>3</sub>COONa + 3NaI + 3H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Иодоформ</span> (желтый осадок) + ацетат натрия.<br>
+                        <em>Применение:</em> Качественная реакция на группу CH<sub>3</sub>-CO-.
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= КАРБОНОВЫЕ КИСЛОТЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Карбоновые кислоты</h4>
+            <p><strong>Функциональная группа:</strong> Карбоксильная (-COOH).</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Кислоты — это «альдегиды, которые уже окислились». Из-за группы -COOH они проявляют ярко выраженные кислотные свойства. Но они могут и восстанавливаться, хотя это сложнее, чем у альдегидов.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кислотные свойства</span>
+            <h3>1. Общие свойства кислот (как у неорганики)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие с металлами, оксидами, основаниями, солями</summary>
+                <div class="answer-content">
+                    <div><strong>С металлом (Zn):</strong> 2CH<sub>3</sub>COOH + Zn → (CH<sub>3</sub>COO)<sub>2</sub>Zn + H<sub>2</sub>↑</div>
+                    <div><strong>С основным оксидом (CuO):</strong> 2CH<sub>3</sub>COOH + CuO → (CH<sub>3</sub>COO)<sub>2</sub>Cu + H<sub>2</sub>O</div>
+                    <div><strong>С основанием (NaOH):</strong> CH<sub>3</sub>COOH + NaOH → CH<sub>3</sub>COONa + H<sub>2</sub>O</div>
+                    <div><strong>С солью (Na<sub>2</sub>CO<sub>3</sub>):</strong> 2CH<sub>3</sub>COOH + Na<sub>2</sub>CO<sub>3</sub> → 2CH<sub>3</sub>COONa + CO<sub>2</sub>↑ + H<sub>2</sub>O</div>
+                    <div><em>Признак:</em> Выделение газа (CO<sub>2</sub>) при реакции с карбонатами — качественная реакция на кислоту.</div>
+                </div>
+            </details>
+
+            <h3>2. Реакция этерификации (Образование сложных эфиров)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие уксусной кислоты и этанола</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>COOH + C<sub>2</sub>H<sub>5</sub>OH <span class="condition">H<sub>2</sub>SO<sub>4</sub>(конц.), t°</span> ⇄ CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub> + H<sub>2</sub>O</span>
+                    <div>
+                        <strong>Продукт:</strong> <span class="product">Этилацетат</span> (этиловый эфир уксусной кислоты).<br>
+                        <em>Особенность:</em> Реакция обратима. Вода отщепляется от кислоты (OH) и спирта (H).
+                    </div>
+                </div>
+            </details>
+
+            <h3>3. Специфические реакции</h3>
+            <details>
+                <summary>Уравнение: Декарбоксилирование (сплавление со щелочью)</summary>
+                <div class="answer-content">
+                    <span class="formula">CH<sub>3</sub>COONa + NaOH <span class="condition">t° (сплавление)</span> → CH<sub>4</sub>↑ + Na<sub>2</sub>CO<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Метан</span> (алкан) + карбонат натрия.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Особые свойства муравьиной кислоты (реакция "серебряного зеркала")</summary>
+                <div class="answer-content">
+                    <span class="formula">HCOOH + Ag<sub>2</sub>O <span class="condition">NH<sub>3</sub>, t°</span> → CO<sub>2</sub>↑ + H<sub>2</sub>O + 2Ag↓</span>
+                    <div>Муравьиная кислота содержит альдегидную группу, поэтому дает реакцию "серебряного зеркала".</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= СЛОЖНЫЕ ЭФИРЫ, ЖИРЫ, УГЛЕВОДЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Сложные эфиры, Жиры, Углеводы</h4>
+            <p><strong>Строение:</strong> R-COO-R' (сложные эфиры). Жиры — сложные эфиры глицерина и высших карбоновых кислот. Углеводы — альдегидоспирты и их полимеры.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Сложные эфиры — это «продукты любви» кислоты и спирта. Они часто пахнут фруктами. Главная реакция для них — гидролиз (разложение водой). Если гидролиз идет в щелочной среде, он называется «омылением» (потому что получается мыло).
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Гидролиз</span>
+            <h3>1. Гидролиз сложных эфиров и жиров</h3>
+            <details>
+                <summary>Уравнение: Кислотный гидролиз (обратимый) и Щелочной гидролиз (омыление)</summary>
+                <div class="answer-content">
+                    <div><strong>Кислотный:</strong> CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub> + H<sub>2</sub>O <span class="condition">H<sub>2</sub>SO<sub>4</sub>, t°</span> ⇄ CH<sub>3</sub>COOH + C<sub>2</sub>H<sub>5</sub>OH</div>
+                    <div style="margin-top: 10px;"><strong>Щелочной:</strong> CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub> + NaOH <span class="condition">t°</span> → CH<sub>3</sub>COONa + C<sub>2</sub>H<sub>5</sub>OH</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Щелочной гидролиз жира (получение мыла)</summary>
+                <div class="answer-content">
+                    <span class="formula">(C<sub>17</sub>H<sub>35</sub>COO)<sub>3</sub>C<sub>3</sub>H<sub>5</sub> + 3NaOH <span class="condition">t°</span> → 3C<sub>17</sub>H<sub>35</sub>COONa + C<sub>3</sub>H<sub>5</sub>(OH)<sub>3</sub></span>
+                    <div><strong>Продукты:</strong> <span class="product">Стеарат натрия</span> (мыло) + <span class="product">Глицерин</span>.</div>
+                </div>
+            </details>
+
+            <h3>2. Углеводы: Глюкоза и Сахароза</h3>
+            <details>
+                <summary>Уравнение: Реакция "Серебряного зеркала" глюкозы</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + Ag<sub>2</sub>O <span class="condition">NH<sub>3</sub>, t°</span> → C<sub>6</sub>H<sub>12</sub>O<sub>7</sub> (глюконовая кислота) + 2Ag↓</span>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Гидролиз сахарозы</summary>
+                <div class="answer-content">
+                    <span class="formula">C<sub>12</sub>H<sub>22</sub>O<sub>11</sub> + H<sub>2</sub>O <span class="condition">H<sub>2</sub>SO<sub>4</sub>, t°</span> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (глюкоза) + C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (фруктоза)</span>
+                </div>
+            </details>
+
+            <h3>3. Углеводы: Крахмал и Целлюлоза</h3>
+            <details>
+                <summary>Уравнение: Гидролиз полисахаридов</summary>
+                <div class="answer-content">
+                    <span class="formula">(C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub> + nH<sub>2</sub>O <span class="condition">H<sub>2</sub>SO<sub>4</sub>, t°</span> → nC<sub>6</sub>H<sub>12</sub>O<sub>6</sub> (глюкоза)</span>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Качественная реакция на крахмал</summary>
+                <div class="answer-content">
+                    <span class="formula">(C<sub>6</sub>H<sub>10</sub>O<sub>5</sub>)<sub>n</sub> + I<sub>2</sub> → <span class="product">Синее окрашивание</span></span>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= СВОДНАЯ ТАБЛИЦА КАЧЕСТВЕННЫХ РЕАКЦИЙ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Сводная таблица качественных реакций</h4>
+            <div class="simple-explain">
+                <strong>Это нужно знать наизусть!</strong> В ЕГЭ задание 25 часто просит определить вещество в пробирке. Эти реакции — твой главный инструмент.
+            </div>
+        </aside>
+        <main class="main-content">
+            <h3>Качественные реакции на кислородсодержащие соединения</h3>
+            <table>
+                <tr>
+                    <th>Класс соединений</th>
+                    <th>Реагент</th>
+                    <th>Признак реакции</th>
+                </tr>
+                <tr>
+                    <td>Многоатомные спирты (глицерин, этиленгликоль)</td>
+                    <td>Cu(OH)<sub>2</sub> (свежеосажденный)</td>
+                    <td>Растворение осадка, ярко-синий раствор</td>
+                </tr>
+                <tr>
+                    <td>Фенол</td>
+                    <td>Бромная вода (Br<sub>2</sub>)</td>
+                    <td>Белый осадок (2,4,6-трибромфенол)</td>
+                </tr>
+                <tr>
+                    <td>Фенол</td>
+                    <td>FeCl<sub>3</sub> (хлорид железа III)</td>
+                    <td>Фиолетовое окрашивание</td>
+                </tr>
+                <tr>
+                    <td>Альдегиды</td>
+                    <td>Ag<sub>2</sub>O (аммиачный раствор)</td>
+                    <td>Реакция "серебряного зеркала" (налет Ag)</td>
+                </tr>
+                <tr>
+                    <td>Альдегиды</td>
+                    <td>Cu(OH)<sub>2</sub> (при нагревании)</td>
+                    <td>Кирпично-красный осадок Cu<sub>2</sub>O</td>
+                </tr>
+                <tr>
+                    <td>Карбоновые кислоты</td>
+                    <td>Na<sub>2</sub>CO<sub>3</sub> или NaHCO<sub>3</sub></td>
+                    <td>Выделение газа (CO<sub>2</sub>)</td>
+                </tr>
+                <tr>
+                    <td>Муравьиная кислота (HCOOH)</td>
+                    <td>Ag<sub>2</sub>O (аммиачный раствор)</td>
+                    <td>Реакция "серебряного зеркала"</td>
+                </tr>
+                <tr>
+                    <td>Крахмал</td>
+                    <td>I<sub>2</sub> (раствор йода)</td>
+                    <td>Синее окрашивание</td>
+                </tr>
+                <tr>
+                    <td>Глюкоза</td>
+                    <td>Cu(OH)<sub>2</sub> (без нагревания)</td>
+                    <td>Ярко-синий раствор (как многоатомный спирт)</td>
+                </tr>
+                <tr>
+                    <td>Глюкоза</td>
+                    <td>Cu(OH)<sub>2</sub> (при нагревании) или Ag<sub>2</sub>O</td>
+                    <td>Осадок Cu<sub>2</sub>O или "серебряное зеркало" (как альдегид)</td>
+                </tr>
+            </table>
+        </main>
+    </section>
+
+    <div class="footer-note">
+        <p>✨ <strong>Конец расширенного Модуля 3 (Кислородсодержащие).</strong> <br>
+        Теперь база по органике стала значительно глубже. Следующий шаг — <strong>Неорганическая химия</strong> (оксиды, основания, кислоты, соли, гидролиз, ОВР) и разбор реальных заданий из банка ФИПИ. Пиши <strong>"дальше"</strong>!</p>
+    </div>    <!-- ==========================================
+         МОДУЛЬ 4: НЕОРГАНИЧЕСКАЯ ХИМИЯ (ТЕОРИЯ И ПРАКТИКА)
+         ========================================== -->
+
+    <h1 style="margin-top: 60px; border-bottom-color: var(--pastel-blue); color: var(--pastel-blue);">🧪 Неорганическая химия: Полный курс для ЕГЭ</h1>
+
+    <!-- ================= ОКСИДЫ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Оксиды</h4>
+            <p><strong>Определение:</strong> Сложные вещества, состоящие из двух элементов, один из которых кислород в степени окисления -2.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Оксиды — это «кирпичики» неорганики. Они делятся на основные (реагируют с кислотами), кислотные (реагируют с основаниями) и амфотерные (реагируют и с теми, и с другими). Главное правило: <strong>основный оксид + кислотный оксид = соль</strong>.
+            </div>
+            <h4 style="margin-top: 20px;">Классификация</h4>
+            <p><strong>Несолеобразующие:</strong> CO, NO, N<sub>2</sub>O, SiO.</p>
+            <p><strong>Солеобразующие:</strong> Основные (Na<sub>2</sub>O), Кислотные (SO<sub>3</sub>), Амфотерные (Al<sub>2</sub>O<sub>3</sub>, ZnO).</p>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Свойства оксидов</span>
+            <h3>1. Основные оксиды (реагируют с кислотами и кислотными оксидами)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие основного оксида с кислотой</summary>
+                <div class="answer-content">
+                    <span class="formula">CuO + 2HCl → CuCl<sub>2</sub> + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Соль + вода</span>.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Взаимодействие основного оксида с кислотным оксидом</summary>
+                <div class="answer-content">
+                    <span class="formula">CaO + CO<sub>2</sub> → CaCO<sub>3</sub></span>
+                    <div><strong>Продукт:</strong> <span class="product">Соль</span>.</div>
+                </div>
+            </details>
+            
+            <h3>2. Кислотные оксиды (реагируют с основаниями и основными оксидами)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие кислотного оксида со щелочью</summary>
+                <div class="answer-content">
+                    <span class="formula">SO<sub>3</sub> + 2NaOH → Na<sub>2</sub>SO<sub>4</sub> + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Соль + вода</span>.</div>
+                </div>
+            </details>
+            
+            <h3>3. Амфотерные оксиды (реагируют и с кислотами, и со щелочами)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие Al<sub>2</sub>O<sub>3</sub> с кислотой и щелочью</summary>
+                <div class="answer-content">
+                    <div><strong>С кислотой (основные свойства):</strong> Al<sub>2</sub>O<sub>3</sub> + 6HCl → 2AlCl<sub>3</sub> + 3H<sub>2</sub>O</div>
+                    <div style="margin-top: 10px;"><strong>Со щелочью (кислотные свойства):</strong> Al<sub>2</sub>O<sub>3</sub> + 2NaOH <span class="condition">t° (сплавление)</span> → 2NaAlO<sub>2</sub> + H<sub>2</sub>O</div>
+                    <div><em>Продукт:</em> <span class="product">Алюминат натрия</span>.</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= ОСНОВАНИЯ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Основания</h4>
+            <p><strong>Определение:</strong> Сложные вещества, содержащие гидроксильную группу -OH.</p>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Основания — это «противоположность» кислотам. Растворимые основания называются <strong>щелочами</strong> (NaOH, KOH, Ca(OH)<sub>2</sub>). Нерастворимые основания (Cu(OH)<sub>2</sub>) легко разлагаются при нагревании. Амфотерные гидроксиды (Al(OH)<sub>3</sub>, Zn(OH)<sub>2</sub>) ведут себя как хамелеоны: реагируют и с кислотами, и со щелочами.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Свойства оснований</span>
+            <h3>1. Щелочи (реагируют с кислотами, кислотными оксидами, солями)</h3>
+            <details>
+                <summary>Уравнение: Реакция нейтрализации и реакция обмена с солью</summary>
+                <div class="answer-content">
+                    <div><strong>С кислотой:</strong> NaOH + HCl → NaCl + H<sub>2</sub>O</div>
+                    <div style="margin-top: 10px;"><strong>С солью (если образуется осадок):</strong> 2NaOH + CuSO<sub>4</sub> → Cu(OH)<sub>2</sub>↓ + Na<sub>2</sub>SO<sub>4</sub></div>
+                </div>
+            </details>
+            <h3>2. Нерастворимые основания (разлагаются при нагревании)</h3>
+            <details>
+                <summary>Уравнение: Разложение гидроксида меди(II)</summary>
+                <div class="answer-content">
+                    <span class="formula">Cu(OH)<sub>2</sub> <span class="condition">t°</span> → CuO + H<sub>2</sub>O</span>
+                    <div><strong>Продукт:</strong> <span class="product">Основный оксид + вода</span>.</div>
+                </div>
+            </details>
+            <h3>3. Амфотерные гидроксиды</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие Zn(OH)<sub>2</sub> с кислотой и щелочью</summary>
+                <div class="answer-content">
+                    <div><strong>С кислотой:</strong> Zn(OH)<sub>2</sub> + 2HCl → ZnCl<sub>2</sub> + 2H<sub>2</sub>O</div>
+                    <div style="margin-top: 10px;"><strong>Со щелочью:</strong> Zn(OH)<sub>2</sub> + 2NaOH → Na<sub>2</sub>[Zn(OH)<sub>4</sub>]</div>
+                    <div><em>Продукт:</em> <span class="product">Тетрагидроксоцинкат натрия</span> (комплексная соль).</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= КИСЛОТЫ И СОЛИ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Кислоты и Соли</h4>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Кислоты реагируют с металлами (до водорода), оксидами, основаниями и солями. Соли — это «результат» всех реакций обмена. Главное правило реакций обмена (и с солями, и с кислотами, и со щелочами): <strong>реакция идет до конца, если выпадает осадок (↓), выделяется газ (↑) или образуется вода (H<sub>2</sub>O)</strong>.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Реакции ионного обмена</span>
+            <h3>1. Кислоты (типичные реакции)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие с металлом (с выделением газа)</summary>
+                <div class="answer-content">
+                    <span class="formula">Zn + 2HCl → ZnCl<sub>2</sub> + H<sub>2</sub>↑</span>
+                    <div><em>Металл должен стоять в ряду напряжений до водорода!</em></div>
+                </div>
+            </details>
+            <h3>2. Соли (реакции обмена)</h3>
+            <details>
+                <summary>Уравнение: Реакция с выпадением осадка и выделением газа</summary>
+                <div class="answer-content">
+                    <div><strong>Осадок:</strong> AgNO<sub>3</sub> + NaCl → AgCl↓ + NaNO<sub>3</sub></div>
+                    <div style="margin-top: 10px;"><strong>Газ:</strong> Na<sub>2</sub>CO<sub>3</sub> + 2HCl → 2NaCl + CO<sub>2</sub>↑ + H<sub>2</sub>O</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= ГИДРОЛИЗ СОЛЕЙ ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Гидролиз солей</h4>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Гидролиз — это разложение соли водой. Соль «разваливается» на ионы, и эти ионы начинают взаимодействовать с H<sup>+</sup> или OH<sup>-</sup> из воды. Если соль образована <strong>сильным основанием и слабой кислотой</strong> — среда будет щелочная (pH > 7). Если <strong>слабым основанием и сильной кислотой</strong> — среда кислая (pH < 7). Если и основание, и кислота сильные — гидролиза нет (среда нейтральная).
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Среда раствора</span>
+            <h3>1. Типы гидролиза</h3>
+            <details>
+                <summary>Уравнение: Гидролиз соли слабого основания и сильной кислоты (кислая среда)</summary>
+                <div class="answer-content">
+                    <span class="formula">NH<sub>4</sub>Cl + H<sub>2</sub>O ⇄ NH<sub>3</sub>·H<sub>2</sub>O + HCl</span>
+                    <div><strong>Среда:</strong> <span class="product">Кислая (pH < 7)</span>. Ион NH<sub>4</sub><sup>+</sup> связывает OH<sup>-</sup> из воды.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Гидролиз соли сильного основания и слабой кислоты (щелочная среда)</summary>
+                <div class="answer-content">
+                    <span class="formula">Na<sub>2</sub>CO<sub>3</sub> + H<sub>2</sub>O ⇄ NaHCO<sub>3</sub> + NaOH</span>
+                    <div><strong>Среда:</strong> <span class="product">Щелочная (pH > 7)</span>. Ион CO<sub>3</sub><sup>2-</sup> связывает H<sup>+</sup> из воды.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Совместный гидролиз (до конца)</summary>
+                <div class="answer-content">
+                    <span class="formula">Al<sub>2</sub>S<sub>3</sub> + 6H<sub>2</sub>O → 2Al(OH)<sub>3</sub>↓ + 3H<sub>2</sub>S</span>
+                    <div>Если соль образована слабым основанием и слабой кислотой, гидролиз идет необратимо.</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= ОВР (ОКИСЛИТЕЛЬНО-ВОССТАНОВИТЕЛЬНЫЕ РЕАКЦИИ) ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>ОВР и Электролиз</h4>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                В ОВР всегда кто-то отдает электроны (восстановитель, сам окисляется), а кто-то принимает (окислитель, сам восстанавливается). Самое сложное в ЕГЭ — это <strong>среда раствора</strong>. В кислой среде мы добавляем H<sup>+</sup> и H<sub>2</sub>O, в нейтральной/щелочной — H<sub>2</sub>O и OH<sup>-</sup>. Электролиз — это ОВР под действием тока: на катоде всегда восстановление (металл или водород), на аноде — окисление.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">ОВР</span>
+            <h3>1. Типичные окислители и восстановители</h3>
+            <table>
+                <tr><th>Окислители (принимают e<sup>-</sup>)</th><th>Восстановители (отдают e<sup>-</sup>)</th></tr>
+                <tr><td>KMnO<sub>4</sub>, K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>, HNO<sub>3</sub>, H<sub>2</sub>SO<sub>4</sub>(конц), галогены (Cl<sub>2</sub>, Br<sub>2</sub>)</td><td>Металлы, H<sub>2</sub>, C, CO, H<sub>2</sub>S, SO<sub>2</sub>, NH<sub>3</sub>, галогенид-ионы (Cl<sup>-</sup>, Br<sup>-</sup>)</td></tr>
+            </table>
+            <h3>2. Пример ОВР (электронный баланс)</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие цинка с разбавленной азотной кислотой</summary>
+                <div class="answer-content">
+                    <div style="font-family: monospace;">
+                        3Zn<sup>0</sup> + 8HNO<sub>3</sub>(разб) → 3Zn(NO<sub>3</sub>)<sub>2</sub> + 2NO↑ + 4H<sub>2</sub>O
+                    </div>
+                    <div style="margin-top: 10px;">
+                        Zn<sup>0</sup> - 2e<sup>-</sup> → Zn<sup>+2</sup> | 3 (восстановитель, окисляется)<br>
+                        N<sup>+5</sup> + 3e<sup>-</sup> → N<sup>+2</sup> | 2 (окислитель, восстанавливается)
+                    </div>
+                </div>
+            </details>
+
+            <h3>3. Электролиз</h3>
+            <details>
+                <summary>Уравнение: Электролиз раствора CuCl<sub>2</sub></summary>
+                <div class="answer-content">
+                    <div><strong>Катод (восстановление):</strong> Cu<sup>2+</sup> + 2e<sup>-</sup> → Cu<sup>0</sup></div>
+                    <div><strong>Анод (окисление):</strong> 2Cl<sup>-</sup> - 2e<sup>-</sup> → Cl<sub>2</sub>↑</div>
+                    <div style="margin-top: 10px;"><strong>Суммарно:</strong> CuCl<sub>2</sub> <span class="condition">ток</span> → Cu + Cl<sub>2</sub>↑</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= ПРАКТИКА: БАНК ЗАДАНИЙ ФИПИ ================= -->
+    <section class="module-container" style="background-color: var(--pastel-green); border-color: #A5D6A7;">
+        <aside class="sidebar" style="background-color: #F1F8E9; border-color: #C5E1A5;">
+            <h4>Практика ЕГЭ (Банк ФИПИ)</h4>
+            <div class="simple-explain" style="background-color: #FFF9C4; border-left-color: #FBC02D;">
+                <strong>Как работать с этим блоком:</strong><br>
+                Сначала попробуй решить задание самостоятельно. Затем нажми на «Показать ответ» и проверь себя. В ЕГЭ такие задания встречаются в части 1 (задания 6, 7, 8, 9) и части 2 (задание 29, 30, 31, 32).
+            </div>
+        </aside>
+        <main class="main-content" style="background-color: #FFFDE7;">
+            <h3 style="color: #2E7D32;">Задание 1 (Тип 6: Оксиды и их свойства)</h3>
+            <p>Установите соответствие между формулой оксида и его характером: к каждой позиции, обозначенной буквой, подберите соответствующую позицию, обозначенную цифрой.</p>
+            <p><strong>Оксиды:</strong> А) Al<sub>2</sub>O<sub>3</sub>  Б) BaO  В) SO<sub>3</sub></p>
+            <p><strong>Характер:</strong> 1) Основный  2) Кислотный  3) Амфотерный</p>
+            <details>
+                <summary>Показать ответ и объяснение</summary>
+                <div class="answer-content">
+                    <div><strong>Ответ: А-3, Б-1, В-2</strong></div>
+                    <div style="margin-top: 10px;">
+                        Al<sub>2</sub>O<sub>3</sub> — амфотерный (реагирует и с кислотами, и со щелочами).<br>
+                        BaO — основный (образован щелочноземельным металлом).<br>
+                        SO<sub>3</sub> — кислотный (образован неметаллом).
+                    </div>
+                </div>
+            </details>
+
+            <h3 style="color: #2E7D32; margin-top: 30px;">Задание 2 (Тип 7: Гидролиз)</h3>
+            <p>Установите соответствие между солью и средой её водного раствора.</p>
+            <p><strong>Соли:</strong> А) K<sub>2</sub>S  Б) NH<sub>4</sub>Cl  В) NaNO<sub>3</sub></p>
+            <p><strong>Среда:</strong> 1) Кислая  2) Нейтральная  3) Щелочная</p>
+            <details>
+                <summary>Показать ответ и объяснение</summary>
+                <div class="answer-content">
+                    <div><strong>Ответ: А-3, Б-1, В-2</strong></div>
+                    <div style="margin-top: 10px;">
+                        K<sub>2</sub>S — сильное основание + слабая кислота → щелочная среда.<br>
+                        NH<sub>4</sub>Cl — слабое основание + сильная кислота → кислая среда.<br>
+                        NaNO<sub>3</sub> — сильное основание + сильная кислота → нейтральная среда.
+                    </div>
+                </div>
+            </details>
+
+            <h3 style="color: #2E7D32; margin-top: 30px;">Задание 3 (Тип 30: Цепочка превращений)</h3>
+            <p>Напишите уравнения реакций, с помощью которых можно осуществить следующие превращения:</p>
+            <p style="font-family: monospace; font-size: 1.2em;">Fe → FeCl<sub>2</sub> → Fe(OH)<sub>2</sub> → FeO</p>
+            <details>
+                <summary>Показать ответ и условия</summary>
+                <div class="answer-content">
+                    <div>1) <strong>Fe + 2HCl → FeCl<sub>2</sub> + H<sub>2</sub>↑</strong> (взаимодействие железа с соляной кислотой)</div>
+                    <div>2) <strong>FeCl<sub>2</sub> + 2NaOH → Fe(OH)<sub>2</sub>↓ + 2NaCl</strong> (реакция обмена, выпадение серо-зеленого осадка)</div>
+                    <div>3) <strong>Fe(OH)<sub>2</sub> <span class="condition">t°</span> → FeO + H<sub>2</sub>O</strong> (термическое разложение гидроксида)</div>
+                </div>
+            </details>
+
+            <h3 style="color: #2E7D32; margin-top: 30px;">Задание 4 (Тип 29: ОВР)</h3>
+            <p>Используя метод электронного баланса, составьте уравнение реакции:</p>
+            <p style="font-family: monospace; font-size: 1.2em;">KMnO<sub>4</sub> + HCl → KCl + MnCl<sub>2</sub> + Cl<sub>2</sub>↑ + H<sub>2</sub>O</p>
+            <details>
+                <summary>Показать ответ и баланс</summary>
+                <div class="answer-content">
+                    <div><strong>Уравнение:</strong> 2KMnO<sub>4</sub> + 16HCl → 2KCl + 2MnCl<sub>2</sub> + 5Cl<sub>2</sub>↑ + 8H<sub>2</sub>O</div>
+                    <div style="margin-top: 10px;">
+                        Mn<sup>+7</sup> + 5e<sup>-</sup> → Mn<sup>+2</sup> | 2 (окислитель)<br>
+                        2Cl<sup>-</sup> - 2e<sup>-</sup> → Cl<sub>2</sub><sup>0</sup> | 5 (восстановитель)
+                    </div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <div class="footer-note">
+        <p>✨ <strong>Конец Модуля 4 (Неорганическая химия и практика ФИПИ).</strong> <br>
+        Теперь у тебя есть гигантский, структурированный и красивый файл для подготовки. Напиши <strong>"дальше"</strong>, если хочешь, чтобы я добавил еще больше заданий из банка ФИПИ, или если нужно разобрать какие-то конкретные сложные темы (например, свойства переходных металлов, или задачи на растворимость).</p>
+    </div>
+        <!-- ==========================================
+         МОДУЛЬ 5: ХИМИЯ ЭЛЕМЕНТОВ И СЛОЖНЫЕ ЗАДАЧИ ФИПИ
+         ========================================== -->
+
+    <h1 style="margin-top: 60px; border-bottom-color: var(--pastel-yellow); color: var(--coffee-medium);">🧪 Химия элементов: Неметаллы, Металлы и Банк ФИПИ</h1>
+
+    <!-- ================= НЕМЕТАЛЛЫ: ГАЛОГЕНЫ И СЕРА ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Галогены и Сера</h4>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Галогены (F, Cl, Br, I) — сильные окислители. Хлор в щелочах диспропорционирует (реакция на холоде и при нагревании идет по-разному). Сера — «двуликий» элемент: в сероводороде (H<sub>2</sub>S) она восстановитель, а в концентрированной серной кислоте (H<sub>2</sub>SO<sub>4</sub>) — сильный окислитель.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <h3>1. Свойства галогенов</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие хлора с холодной и горячей щелочью</summary>
+                <div class="answer-content">
+                    <div><strong>На холоде (Cl<sub>2</sub> + NaOH (холод)):</strong></div>
+                    <span class="formula">Cl<sub>2</sub> + 2NaOH → NaCl + NaClO + H<sub>2</sub>O</span>
+                    <div><em>Продукты:</em> хлорид и гипохлорит натрия (жавель).</div>
+                    <div style="margin-top: 10px;"><strong>При нагревании (Cl<sub>2</sub> + NaOH (горячий)):</strong></div>
+                    <span class="formula">3Cl<sub>2</sub> + 6NaOH → 5NaCl + NaClO<sub>3</sub> + 3H<sub>2</sub>O</span>
+                    <div><em>Продукты:</em> хлорид и хлорат натрия (бертолетова соль).</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Вытеснение галогенов (качественная реакция)</summary>
+                <div class="answer-content">
+                    <span class="formula">Cl<sub>2</sub> + 2NaBr → 2NaCl + Br<sub>2</sub></span>
+                    <div>Более активный галоген (Cl) вытесняет менее активный (Br) из раствора его соли.</div>
+                </div>
+            </details>
+
+            <h3>2. Свойства Серы и её соединений</h3>
+            <details>
+                <summary>Уравнение: Горение сероводорода и взаимодействие с SO<sub>2</sub></summary>
+                <div class="answer-content">
+                    <div><strong>Недостаток кислорода:</strong> 2H<sub>2</sub>S + O<sub>2</sub>(недост.) → 2S↓ + 2H<sub>2</sub>O</div>
+                    <div style="margin-top: 10px;"><strong>Избыток кислорода:</strong> 2H<sub>2</sub>S + 3O<sub>2</sub>(изб.) → 2SO<sub>2</sub> + 2H<sub>2</sub>O</div>
+                    <div style="margin-top: 10px;"><strong>Реакция с SO<sub>2</sub> (качественная на H<sub>2</sub>S):</strong> 2H<sub>2</sub>S + SO<sub>2</sub> → 3S↓ + 2H<sub>2</sub>O (помутнение раствора).</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Окислительные свойства концентрированной H<sub>2</sub>SO<sub>4</sub></summary>
+                <div class="answer-content">
+                    <div><strong>С медью:</strong> Cu + 2H<sub>2</sub>SO<sub>4</sub>(конц.) <span class="condition">t°</span> → CuSO<sub>4</sub> + SO<sub>2</sub>↑ + 2H<sub>2</sub>O</div>
+                    <div style="margin-top: 10px;"><strong>С углеродом:</strong> C + 2H<sub>2</sub>SO<sub>4</sub>(конц.) <span class="condition">t°</span> → CO<sub>2</sub>↑ + 2SO<sub>2</sub>↑ + 2H<sub>2</sub>O</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= НЕМЕТАЛЛЫ: АЗОТ И ФОСФОР ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Азот и Фосфор</h4>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Азотная кислота (HNO<sub>3</sub>) — самый «хитрый» окислитель. Она реагирует с металлами, но никогда не выделяет водород! В зависимости от концентрации и активности металла она может восстанавливаться до NO<sub>2</sub>, NO, N<sub>2</sub>O, N<sub>2</sub> или даже NH<sub>4</sub>NO<sub>3</sub>. Аммиак (NH<sub>3</sub>) — слабое основание, но сильный восстановитель.
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <span class="badge badge-trap">Хитрости HNO<sub>3</sub></span>
+            <h3>1. Свойства Азотной кислоты</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие концентрированной и разбавленной HNO<sub>3</sub> с медью</summary>
+                <div class="answer-content">
+                    <div><strong>С концентрированной (Cu + HNO<sub>3</sub>(конц.)):</strong></div>
+                    <span class="formula">Cu + 4HNO<sub>3</sub>(конц.) → Cu(NO<sub>3</sub>)<sub>2</sub> + 2NO<sub>2</sub>↑ + 2H<sub>2</sub>O</span>
+                    <div><em>Газ:</em> бурый NO<sub>2</sub>.</div>
+                    <div style="margin-top: 10px;"><strong>С разбавленной (Cu + HNO<sub>3</sub>(разб.)):</strong></div>
+                    <span class="formula">3Cu + 8HNO<sub>3</sub>(разб.) → 3Cu(NO<sub>3</sub>)<sub>2</sub> + 2NO↑ + 4H<sub>2</sub>O</span>
+                    <div><em>Газ:</em> бесцветный NO.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Реакция с очень активным металлом (цинк с очень разб. HNO<sub>3</sub>)</summary>
+                <div class="answer-content">
+                    <span class="formula">4Zn + 10HNO<sub>3</sub>(оч. разб.) → 4Zn(NO<sub>3</sub>)<sub>2</sub> + NH<sub>4</sub>NO<sub>3</sub> + 3H<sub>2</sub>O</span>
+                    <div><em>Продукт:</em> нитрат аммония (NH<sub>4</sub>NO<sub>3</sub>). Это классическая ловушка!</div>
+                </div>
+            </details>
+            <h3>2. Свойства Аммиака и Фосфора</h3>
+            <details>
+                <summary>Уравнение: Каталитическое окисление аммиака</summary>
+                <div class="answer-content">
+                    <span class="formula">4NH<sub>3</sub> + 5O<sub>2</sub> <span class="condition">Pt/Rh, t°</span> → 4NO + 6H<sub>2</sub>O</span>
+                    <div><em>Применение:</em> Промышленный способ получения азотной кислоты.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Взаимодействие фосфора со щелочью</summary>
+                <div class="answer-content">
+                    <span class="formula">4P + 3NaOH + 3H<sub>2</sub>O → PH<sub>3</sub>↑ + 3NaH<sub>2</sub>PO<sub>2</sub></span>
+                    <div><em>Продукты:</em> Фосфин (PH<sub>3</sub>) и гипофосфит натрия.</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= МЕТАЛЛЫ: ЩЕЛОЧНЫЕ, АЛЮМИНИЙ, ЖЕЛЕЗО ================= -->
+    <section class="module-container">
+        <aside class="sidebar">
+            <h4>Металлы</h4>
+            <div class="simple-explain">
+                <strong>Объясняем просто:</strong><br>
+                Алюминий (Al) и цинк (Zn) — амфотерные металлы. Они реагируют и с кислотами, и со щелочами! Железо (Fe) — самый популярный металл в ЕГЭ. Он имеет две степени окисления: +2 и +3. Железная окалина (Fe<sub>3</sub>O<sub>4</sub>) — это смесь оксидов +2 и +3. Не забывай про <strong>пассивацию</strong>: концентрированные кислоты (H<sub>2</sub>SO<sub>4</sub>, HNO<sub>3</sub>) на холоде не реагируют с Fe и Al!
+            </div>
+        </aside>
+        <main class="main-content">
+            <span class="badge badge-ege">Кодификатор ЕГЭ</span>
+            <span class="badge badge-trap">Пассивация</span>
+            <h3>1. Щелочные металлы и Алюминий</h3>
+            <details>
+                <summary>Уравнение: Взаимодействие натрия с водой и пероксидом натрия с CO<sub>2</sub></summary>
+                <div class="answer-content">
+                    <div><strong>Na + H<sub>2</sub>O:</strong> 2Na + 2H<sub>2</sub>O → 2NaOH + H<sub>2</sub>↑ (бурная реакция)</div>
+                    <div style="margin-top: 10px;"><strong>Na<sub>2</sub>O<sub>2</sub> + CO<sub>2</sub>:</strong> 2Na<sub>2</sub>O<sub>2</sub> + 2CO<sub>2</sub> → 2Na<sub>2</sub>CO<sub>3</sub> + O<sub>2</sub>↑</div>
+                    <div><em>Применение:</em> Регенерация воздуха в подводных лодках.</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Взаимодействие алюминия со щелочью</summary>
+                <div class="answer-content">
+                    <span class="formula">2Al + 2NaOH + 6H<sub>2</sub>O → 2Na[Al(OH)<sub>4</sub>] + 3H<sub>2</sub>↑</span>
+                    <div><em>Внимание:</em> В школьных заданиях часто пишут 2Al + 2NaOH + 2H<sub>2</sub>O → 2NaAlO<sub>2</sub> + 3H<sub>2</sub>↑ (при сплавлении). Оба варианта допустимы в зависимости от условий.</div>
+                </div>
+            </details>
+
+            <h3>2. Железо и его соединения</h3>
+            <details>
+                <summary>Уравнение: Горение железа и взаимодействие с кислотой</summary>
+                <div class="answer-content">
+                    <div><strong>Горение в хлоре:</strong> 2Fe + 3Cl<sub>2</sub> <span class="condition">t°</span> → 2FeCl<sub>3</sub> (образуется Fe<sup>+3</sup>)</div>
+                    <div style="margin-top: 10px;"><strong>С соляной кислотой:</strong> Fe + 2HCl → FeCl<sub>2</sub> + H<sub>2</sub>↑ (образуется Fe<sup>+2</sup>)</div>
+                </div>
+            </details>
+            <details>
+                <summary>Уравнение: Взаимодействие хлорида железа(III) с железом</summary>
+                <div class="answer-content">
+                    <span class="formula">2FeCl<sub>3</sub> + Fe → 3FeCl<sub>2</sub></span>
+                    <div><em>Суть:</em> Железо(III) окисляет железо(0) до железа(II).</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <!-- ================= ПРАКТИКА: ЗАДАЧИ И ЦЕПОЧКИ ИЗ БАНКА ФИПИ ================= -->
+    <section class="module-container" style="background-color: var(--pastel-blue); border-color: #90CAF9;">
+        <aside class="sidebar" style="background-color: #E3F2FD; border-color: #90CAF9;">
+            <h4>Банк ФИПИ: Задания повышенной сложности</h4>
+            <div class="simple-explain" style="background-color: #E8EAF6; border-left-color: #5C6BC0;">
+                <strong>Разбор реальных прототипов:</strong><br>
+                Здесь собраны задания, которые чаще всего вызывают трудности у выпускников. Это задания 29 (ОВР), 30 (цепочки превращений) и 34 (расчетные задачи на растворы).
+            </div>
+        </aside>
+        <main class="main-content" style="background-color: #FAFAFA;">
+            <h3 style="color: #1565C0;">Задание 5 (Тип 29: ОВР с органическими веществами)</h3>
+            <p>Используя метод электронного баланса, составьте уравнение реакции:</p>
+            <p style="font-family: monospace; font-size: 1.2em;">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + KMnO<sub>4</sub> + H<sub>2</sub>SO<sub>4</sub> → CO<sub>2</sub> + MnSO<sub>4</sub> + K<sub>2</sub>SO<sub>4</sub> + H<sub>2</sub>O</p>
+            <details>
+                <summary>Показать ответ и баланс</summary>
+                <div class="answer-content">
+                    <div><strong>Ответ:</strong> 5C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 24KMnO<sub>4</sub> + 36H<sub>2</sub>SO<sub>4</sub> → 30CO<sub>2</sub>↑ + 24MnSO<sub>4</sub> + 12K<sub>2</sub>SO<sub>4</sub> + 66H<sub>2</sub>O</div>
+                    <div style="margin-top: 10px;">
+                        Глюкоза (C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>) окисляется до CO<sub>2</sub>. Углерод меняет степень окисления с 0 до +4 (отдает 4e на каждый атом C, всего 24e).<br>
+                        Марганец (Mn<sup>+7</sup>) восстанавливается до Mn<sup>+2</sup> (принимает 5e).<br>
+                        Соотношение: 5 к 24.
+                    </div>
+                </div>
+            </details>
+
+            <h3 style="color: #1565C0; margin-top: 30px;">Задание 6 (Тип 30: Цепочка превращений)</h3>
+            <p>Напишите уравнения реакций, с помощью которых можно осуществить следующие превращения:</p>
+            <p style="font-family: monospace; font-size: 1.2em;">Al → Na[Al(OH)<sub>4</sub>] → AlCl<sub>3</sub> → Al(OH)<sub>3</sub> → Al<sub>2</sub>O<sub>3</sub></p>
+            <details>
+                <summary>Показать ответ и условия</summary>
+                <div class="answer-content">
+                    <div>1) <strong>2Al + 2NaOH + 6H<sub>2</sub>O → 2Na[Al(OH)<sub>4</sub>] + 3H<sub>2</sub>↑</strong> (алюминий + щелочь)</div>
+                    <div>2) <strong>Na[Al(OH)<sub>4</sub>] + 4HCl → AlCl<sub>3</sub> + NaCl + 4H<sub>2</sub>O</strong> (комплексная соль + избыток сильной кислоты)</div>
+                    <div>3) <strong>AlCl<sub>3</sub> + 3NH<sub>3</sub>·H<sub>2</sub>O → Al(OH)<sub>3</sub>↓ + 3NH<sub>4</sub>Cl</strong> (гидроксид аммония — слабое основание, оно осаждает Al(OH)<sub>3</sub>, но не растворяет его в избытке).</div>
+                    <div>4) <strong>2Al(OH)<sub>3</sub> <span class="condition">t°</span> → Al<sub>2</sub>O<sub>3</sub> + 3H<sub>2</sub>O</strong> (разложение при нагревании).</div>
+                </div>
+            </details>
+
+            <h3 style="color: #1565C0; margin-top: 30px;">Задание 7 (Тип 34: Расчетная задача)</h3>
+            <p>При взаимодействии 13 г цинка с 200 г 10%-ного раствора гидроксида натрия выделился газ. Найдите объем выделившегося газа (н.у.) и массовую долю соли в полученном растворе.</p>
+            <details>
+                <summary>Показать решение</summary>
+                <div class="answer-content">
+                    <div><strong>1. Найдем количества веществ:</strong></div>
+                    <div>n(Zn) = 13 / 65 = 0,2 моль</div>
+                    <div>m(NaOH) в растворе = 200 * 0,1 = 20 г. n(NaOH) = 20 / 40 = 0,5 моль</div>
+                    <div><strong>2. Уравнение реакции:</strong></div>
+                    <div>Zn + 2NaOH + 2H<sub>2</sub>O → Na<sub>2</sub>[Zn(OH)<sub>4</sub>] + H<sub>2</sub>↑</div>
+                    <div>Zn в недостатке (0,2 моль), NaOH в избытке (0,5 моль). Считаем по цинку.</div>
+                    <div><strong>3. Находим объем газа:</strong></div>
+                    <div>n(H<sub>2</sub>) = n(Zn) = 0,2 моль. V(H<sub>2</sub>) = 0,2 * 22,4 = <strong>4,48 л</strong>.</div>
+                    <div><strong>4. Находим массу соли (Na<sub>2</sub>[Zn(OH)<sub>4</sub>]):</strong></div>
+                    <div>n(соли) = n(Zn) = 0,2 моль. M(Na<sub>2</sub>[Zn(OH)<sub>4</sub>]) = 179 г/моль. m(соли) = 0,2 * 179 = 35,8 г.</div>
+                    <div><strong>5. Находим массу конечного раствора:</strong></div>
+                    <div>m(р-ра) = m(Zn) + m(р-ра NaOH) - m(H<sub>2</sub>) = 13 + 200 - (0,2 * 2) = 212,6 г.</div>
+                    <div><strong>6. Массовая доля соли:</strong></div>
+                    <div>w = 35,8 / 212,6 ≈ <strong>16,84%</strong>.</div>
+                </div>
+            </details>
+        </main>
+    </section>
+
+    <div class="footer-note">
+        <p>✨ <strong>Конец Модуля 5 (Химия элементов и сложные задачи).</strong> <br>
+        Теперь твой файл включает в себя не только органику, но и всю основную неорганику, а также практические задания ФИПИ. Напиши <strong>"дальше"</strong>, если нужно добавить специфические задачи (например, на атомистику, кристаллогидраты, или смеси), либо чтобы я сгенерировал финальный блок с полным теоретическим справочником по всем формулам для последнего повторения!</p>
+    </div>
